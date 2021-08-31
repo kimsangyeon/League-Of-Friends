@@ -1,0 +1,24 @@
+.myWrap {
+  text-align: center;
+  float: left;
+  display: flex;
+}
+
+.colWrap {
+  flex: 1;
+  border: 1px solid;
+  border-radius: 1em;
+  padding: 10px;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.image {
+  margin: 5px;
+}
+
+.imageInlineWrap {
+  display: block;
+}
