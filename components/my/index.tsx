@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useSummoner } from "@hooks/summoner";
 import styles from '@styles/common.module.css';
 import { getLocalStorageMyName, setLocalStorageMyName } from '@utils/storageUtils';
-import Rank from './Rank';
-import ProfileIcon from './ProfileIcon';
-import ProfileChangeBtn from './ProfileChangeBtn';
+import Rank from '../Rank';
+import ProfileIcon from '../ProfileIcon';
+import ProfileChangeBtn from '../ProfileChangeBtn';
 
 const MyInfo = () => {
   const [myName, setMyName] = useState('');
