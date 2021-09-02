@@ -27,17 +27,17 @@ const Home: NextPage = () => {
   );
 };
 
-export async function getServerSideProps () {
-  const queryClient = new QueryClient()
+// export async function getServerSideProps () {
+//   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(['myInfo'], () => fetchSummoner(''))
-  await queryClient.prefetchQuery(['myRank'], () => fetchRank(''))
+//   await queryClient.prefetchQuery(['summoner'], () => fetchSummoner(''))
+//   await queryClient.prefetchQuery(['rank'], () => fetchRank(''))
 
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
-  }
-}
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient),
+//     },
+//   }
+// }
 
 export default Home

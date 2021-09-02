@@ -5,13 +5,15 @@ import { getLocalStorageMyName, setLocalStorageMyName } from '@utils/storageUtil
 import Rank from '../Rank';
 import ProfileIcon from '../ProfileIcon';
 import ProfileChangeBtn from '../ProfileChangeBtn';
+import { useMatchList } from '@hooks/match';
 
 const MyInfo = () => {
   const [myName, setMyName] = useState('');
   const [newName, setNewName] = useState('');
   const [isModify, setIsModify] = useState(false);
 
-  const { data, isLoading, isFetching } = useSummoner(myName);
+  const { summoner, isSummonerLoading, isSummonerFetching } = useSummoner(myName);
+  const { matchList, isMatchListLoading, isMatchListFetching} = useMatchList();
 
   useEffect(() => {
     setMyName(getLocalStorageMyName());
@@ -36,13 +38,13 @@ const MyInfo = () => {
               <th>rank</th>
             </thead>
             <tbody>
-              {data?.data && (
+              {summoner && (
                 <tr>
                   <td className={styles.colWrap}>
                     <div>
-                      <ProfileIcon profileIconId={data.data.profileIconId} />
+                      <ProfileIcon profileIconId={summoner.profileIconId} />
                       <ProfileChangeBtn
-                        name={data.data.name}
+                        name={summoner.name}
                         newName={newName}
                         isModify={isModify}
                         setNewName={setNewName}
@@ -51,7 +53,7 @@ const MyInfo = () => {
                       />
                     </div>
                   </td>
-                  <td  className={styles.colWrap}><Rank id={data.data.id} /></td>
+                  <td  className={styles.colWrap}><Rank id={summoner.id} /></td>
                 </tr>
               )}
             </tbody>

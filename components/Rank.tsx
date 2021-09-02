@@ -9,12 +9,12 @@ interface RankProps {
 }
 
 const Rank = ({id}: RankProps) => {
-  const { data, isLoading, isFetching } = useRank(id);
+  const { rank, isRankLoading, isRankFetching } = useRank(id);
 
   return (
     <div>
-      {data?.data.length > 0 && 
-        data?.data?.map((info: RankInfo) => (
+      {rank?.length > 0 && 
+        rank?.map((info: RankInfo) => (
           <div className={styles.imageInlineWrap} key={info.leagueId}>
             <Image
               src={`/images/${info.tier}.png`}
