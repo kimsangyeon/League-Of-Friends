@@ -13,7 +13,7 @@ const MyInfo = () => {
   const [isModify, setIsModify] = useState(false);
 
   const { summoner, isSummonerLoading, isSummonerFetching } = useSummoner(myName);
-  const { matchList, isMatchListLoading, isMatchListFetching} = useMatchList();
+  const { matchList, isMatchListLoading, isMatchListFetching} = useMatchList(summoner?.puuid);
 
   useEffect(() => {
     setMyName(getLocalStorageMyName());

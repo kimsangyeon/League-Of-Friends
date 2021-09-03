@@ -9,9 +9,17 @@ module.exports = {
   async rewrites() {
     return [
       {
-        source: '/lol/:slug*',
-        destination: 'https://kr.api.riotgames.com/lol/:slug*',
-      }
+        source: '/lol/summoner/:slug*',
+        destination: 'https://kr.api.riotgames.com/lol/summoner/:slug*',
+      },
+      {
+        source: '/lol/league/:slug*',
+        destination: 'https://kr.api.riotgames.com/lol/league/:slug*',
+      },
+      {
+        source: '/lol/match/:slug*',
+        destination: 'https://asia.api.riotgames.com/lol/match/:slug*',
+      },
     ]
   },
 }
