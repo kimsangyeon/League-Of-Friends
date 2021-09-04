@@ -1,6 +1,7 @@
 export const GET_SUMMONER_BY_NAME_URL = '/lol/summoner/v4/summoners/by-name';
 export const GET_SUMMONER_RANK_BY_ID_URL = '/lol/league/v4/entries/by-summoner';
-export const GET_MATCH_LIST_BY_PUUID = '/lol/match/v5/matches/by-puuid';
+export const GET_MATCH_ID_LIST_BY_PUUID = '/lol/match/v5/matches/by-puuid';
+export const GET_MATCH_BY_MATCHID = '/lol/match/v5/matches';
 
 export const PROFILE_ICON_URL = 'http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon';
 

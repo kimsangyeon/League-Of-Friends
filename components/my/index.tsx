@@ -5,7 +5,7 @@ import { getLocalStorageMyName, setLocalStorageMyName } from '@utils/storageUtil
 import Rank from '../Rank';
 import ProfileIcon from '../ProfileIcon';
 import ProfileChangeBtn from '../ProfileChangeBtn';
-import { useMatchList } from '@hooks/match';
+import MatchInfo from '@components/MatchInfo';
 
 const MyInfo = () => {
   const [myName, setMyName] = useState('');
@@ -13,7 +13,6 @@ const MyInfo = () => {
   const [isModify, setIsModify] = useState(false);
 
   const { summoner, isSummonerLoading, isSummonerFetching } = useSummoner(myName);
-  const { matchList, isMatchListLoading, isMatchListFetching} = useMatchList(summoner?.puuid);
 
   useEffect(() => {
     setMyName(getLocalStorageMyName());
@@ -34,8 +33,10 @@ const MyInfo = () => {
       <div className={styles.tableWrap}>
         <table>
             <thead>
-              <th>profile</th>
-              <th>rank</th>
+              <tr>
+                <th>profile</th>
+                <th>rank</th>
+              </tr>
             </thead>
             <tbody>
               {summoner && (
@@ -51,6 +52,7 @@ const MyInfo = () => {
                         setIsModify={setIsModify}
                         onComplete={onComplete}
                       />
+                      <MatchInfo puuid={summoner?.puuid} />
                     </div>
                   </td>
                   <td  className={styles.colWrap}><Rank id={summoner.id} /></td>
