@@ -19,7 +19,7 @@ export const useMatchIdList = (puuid = ''): {matchIdList: string[], isMatchIdLis
 };
 
 export const fetchMatchList = async (matchIdList: string[] = []) => {
-  if (matchIdList.length === 0) return {data: {}, isLoading: false, isFetching: false};
+  if (matchIdList.length === 0) return [];
 
   const matchList = matchIdList.map(matchId => (
     apiGet(`${GET_MATCH_BY_MATCHID}/${matchId}`)
@@ -28,9 +28,10 @@ export const fetchMatchList = async (matchIdList: string[] = []) => {
 };
 
 export const useMatchList = (matchIdList: string[] = []): {matchList: MatchInfo[], isMatchListLoading: boolean, isMatchListFetching: boolean} => {
-  const {data: matchList, isLoading: isMatchListLoading, isFetching: isMatchListFetching} = useQuery(['matchList', matchIdList], () => fetchMatchList(matchIdList));
+  const {data: matchList, isLoading: isMatchListLoading, isFetching: isMatchListFetching}: any = useQuery(['matchList', matchIdList], () => fetchMatchList(matchIdList));
+
   return {
-    matchList: (matchList as any[]).map(match => match?.data),
+    matchList: matchList ? (matchList as any[]).map(match => match?.data) : [],
     isMatchListLoading,
     isMatchListFetching
   };
