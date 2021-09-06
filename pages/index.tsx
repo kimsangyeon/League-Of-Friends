@@ -3,7 +3,7 @@ import Head from 'next/head'
 import React from 'react';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
-import MyInfo from '@components/my';
+import Info from '@components/info';
 import { fetchRank, fetchSummoner } from '@hooks/summoner';
 import styles from '@styles/Home.module.css'
 
@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <MyInfo />
+        <Info />
       </main>
 
       <footer className={styles.footer}>

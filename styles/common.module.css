@@ -9,6 +9,7 @@
   border: 1px solid;
   border-radius: 1em;
   padding: 10px;
+  font-size: 12px;
 }
 
 .btn {
@@ -20,5 +21,12 @@
 }
 
 .imageInlineWrap {
-  display: block;
+  display: inline-block;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.matchInfoWrap {
+  text-align: center;
+  line-height: 2;
 }
