@@ -16,17 +16,17 @@ const Rank = ({id}: RankProps) => {
   if (isRankLoading || isRankFetching) return <div>Loading</div>;
 
   return (
-    <div>
+    <div className={styles.rankWrap}>
       {RANK_LIST.map((type: string, index: number) => (
         <div className={styles.imageInlineWrap} key={type}>
           <Image
-            src={`/images/${rank[index]?.info?.tier || UNRANKED}.png`}
+            src={`/images/${rank[index]?.tier || UNRANKED}.png`}
             alt="tier image"
             width={46}
             height={46}
           />
-          <div>{rank[index]?.info?.rank}</div>
-          <div>{RANK_TO_MAP[rank[index]?.info?.queueType] || UNRANKED}</div>
+          <div>{rank[index]?.rank}</div>
+          <div>{RANK_TO_MAP[rank[index]?.queueType] || UNRANKED}</div>
         </div>
       ))}
     </div>

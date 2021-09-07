@@ -1,7 +1,7 @@
-.myWrap {
+.infoWrap {
   text-align: center;
-  float: left;
-  display: flex;
+  display: block;
+  margin: 0 auto;
 }
 
 .colWrap {
@@ -10,6 +10,14 @@
   border-radius: 1em;
   padding: 10px;
   font-size: 12px;
+}
+
+.profileWrap {
+  min-width: 80px;
+}
+
+.rankWrap {
+  width: 155px;
 }
 
 .btn {
@@ -29,4 +37,5 @@
 .matchInfoWrap {
   text-align: center;
   line-height: 2;
+  width: 350px;
 }

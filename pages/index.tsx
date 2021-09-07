@@ -1,13 +1,14 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react';
-import { QueryClient } from 'react-query';
-import { dehydrate } from 'react-query/hydration';
 import Info from '@components/info';
-import { fetchRank, fetchSummoner } from '@hooks/summoner';
 import styles from '@styles/Home.module.css'
+import RegisterSummoner from '@components/RegisterSummoner';
+import { useSummonerList } from '@hooks/summoner';
 
 const Home: NextPage = () => {
+  const {summonerList} = useSummonerList();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -17,7 +18,10 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Info />
+        <RegisterSummoner />
+        {summonerList && summonerList?.map(name => (
+          <Info name={name} key={name}/>
+        ))}
       </main>
 
       <footer className={styles.footer}>
@@ -26,18 +30,5 @@ const Home: NextPage = () => {
     </div>
   );
 };
-
-// export async function getServerSideProps () {
-//   const queryClient = new QueryClient()
-
-//   await queryClient.prefetchQuery(['summoner'], () => fetchSummoner(''))
-//   await queryClient.prefetchQuery(['rank'], () => fetchRank(''))
-
-//   return {
-//     props: {
-//       dehydratedState: dehydrate(queryClient),
-//     },
-//   }
-// }
 
 export default Home

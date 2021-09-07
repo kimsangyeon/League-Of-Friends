@@ -11,13 +11,16 @@ const MatchInfo = ({puuid}: MatchInfoProps) => {
   const { matchList, isMatchListLoading, isMatchListFetching } = useMatchList(matchIdList);
   const info = useMemo(() => matchList?.reduce((info, match) => {
     const index = match?.metadata?.participants?.findIndex((p: string) => p === puuid);
+
+    if (index === undefined) return info;
+
     const {kills, deaths, assists, win} = match?.info?.participants[index];
     return {
       kills: info.kills + kills,
       deaths: info.deaths + deaths,
       assists: info.assists + assists,
       win: win ? ++info.win : info.win,
-      lose: win ? info.lose: info.lose++,
+      lose: win ? info.lose : ++info.lose,
     };
   }, {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0}), [matchList, puuid]);
 

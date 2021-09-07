@@ -1,6 +1,7 @@
 import { useQuery } from 'react-query';
 import { apiGet } from '@utils/apiUtils';
 import { GET_SUMMONER_BY_NAME_URL, GET_SUMMONER_RANK_BY_ID_URL } from '@consts/index';
+import { getLocalStorageByNameList } from '@utils/storageUtils';
 
 export const fetchSummoner = async (summonerName = '') => {
   if (!summonerName) return await {data: {}, isLoading: false, isFetching: false};
@@ -35,4 +36,11 @@ export const useRank = (summonerId = '') => {
     isRankFetching,
   };
 }
+
+export const useSummonerList = (): {summonerList: string[]} => {
+  const {data} = useQuery('summonerList', () => getLocalStorageByNameList());
+  return {
+    summonerList: data as string[],
+  };
+};
 
