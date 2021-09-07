@@ -1,0 +1,41 @@
+.infoWrap {
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+}
+
+.colWrap {
+  flex: 1;
+  border: 1px solid;
+  border-radius: 1em;
+  padding: 10px;
+  font-size: 12px;
+}
+
+.profileWrap {
+  min-width: 80px;
+}
+
+.rankWrap {
+  width: 155px;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.image {
+  margin: 5px;
+}
+
+.imageInlineWrap {
+  display: inline-block;
+  font-size: 10px;
+  margin: 10px;
+}
+
+.matchInfoWrap {
+  text-align: center;
+  line-height: 2;
+  width: 350px;
+}
