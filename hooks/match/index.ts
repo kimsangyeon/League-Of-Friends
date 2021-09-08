@@ -8,12 +8,12 @@ const delay = (time = 5000) => {
 };
 
 export const fetchMatchIdList = async (puuid = '') => {
-  if (!puuid) return {data: {}, isLoading: false, isFetching: false};
+  if (!puuid) return { data: {}, isLoading: false, isFetching: false };
 
   return await apiGet(`${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=5`);
 };
 
-export const useMatchIdList = (puuid = ''): {matchIdList: string[], isMatchIdListLoading: boolean, isMatchIdListFetching: boolean} => {
+export const useMatchIdList = (puuid = ''): { matchIdList: string[], isMatchIdListLoading: boolean, isMatchIdListFetching: boolean } => {
   const {
     data: matchIdListData,
     isLoading: isMatchIdListLoading,
@@ -21,6 +21,9 @@ export const useMatchIdList = (puuid = ''): {matchIdList: string[], isMatchIdLis
   } = useQuery(['matchIdList', puuid], () => {
     delay();
     return fetchMatchIdList(puuid)
+  }, {
+    retry: 5,
+    retryDelay: 5000,
   });
 
   return {
@@ -39,7 +42,7 @@ export const fetchMatchList = async (matchIdList: string[] = []) => {
   return await Promise.allSettled(matchList);
 };
 
-export const useMatchList = (matchIdList: string[] = []): {matchList: MatchInfo[], isMatchListLoading: boolean, isMatchListFetching: boolean} => {
+export const useMatchList = (matchIdList: string[] = []): { matchList: MatchInfo[], isMatchListLoading: boolean, isMatchListFetching: boolean } => {
   const {
     data: matchList,
     isLoading: isMatchListLoading,
@@ -47,6 +50,9 @@ export const useMatchList = (matchIdList: string[] = []): {matchList: MatchInfo[
   } = useQuery(['matchList', matchIdList], () => {
     delay();
     return fetchMatchList(matchIdList)
+  }, {
+    retry: 5,
+    retryDelay: 5000,
   });
 
   return {

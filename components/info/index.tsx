@@ -9,7 +9,7 @@ interface InfoProps {
   name: string;
 }
 
-const Info = ({name}: InfoProps) => {
+const Info = ({ name }: InfoProps) => {
   const { summoner, isSummonerLoading, isSummonerFetching } = useSummoner(name);
 
   return (
@@ -18,12 +18,12 @@ const Info = ({name}: InfoProps) => {
         <table>
           <tbody>
             {isSummonerLoading || isSummonerFetching ? (
-              <tr>Loading</tr>
+              <tr><td>Loading</td></tr>
             ) : (
               summoner && (
                 <tr>
                   <td className={styles.colWrap}>
-                    <ProfileIcon profileIconId={summoner.profileIconId} name={summoner.name}/>
+                    <ProfileIcon profileIconId={summoner.profileIconId} name={summoner.name} />
                   </td>
                   <td className={styles.colWrap}>
                     <Rank id={summoner.id} />
