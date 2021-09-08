@@ -4,9 +4,21 @@ import { GET_SUMMONER_BY_NAME_URL, GET_SUMMONER_RANK_BY_ID_URL } from '@consts/i
 import { getLocalStorageByNameList } from '@utils/storageUtils';
 
 export const fetchSummoner = async (summonerName = '') => {
-  if (!summonerName) return await {data: {}, isLoading: false, isFetching: false};
+  if (!summonerName) return await { data: {}, isLoading: false, isFetching: false, status: 400 };
 
   return await apiGet(`${GET_SUMMONER_BY_NAME_URL}/${summonerName}`);
+};
+
+export const checkExistSummoner = async (summonerName = '') => {
+  if (!summonerName) return false;
+
+  try {
+    const result = await fetchSummoner(summonerName);
+    return result.status === 200;
+  } catch (e) {
+    alert('소환사를 찾을 수 없습니다.');
+    console.warn(e);
+  }
 };
 
 export const useSummoner = (summonerName = '') => {
@@ -23,13 +35,13 @@ export const useSummoner = (summonerName = '') => {
 };
 
 export const fetchRank = async (summonerId = '') => {
-  if (!summonerId) return await {data: {}, isLoading: false, isFetching: false};
+  if (!summonerId) return await { data: {}, isLoading: false, isFetching: false };
 
   return await apiGet(`${GET_SUMMONER_RANK_BY_ID_URL}/${summonerId}`);
 }
 
 export const useRank = (summonerId = '') => {
-  const {data: rankData, isLoading: isRankLoading, isFetching: isRankFetching} = useQuery(['rank', summonerId], () => fetchRank(summonerId));
+  const { data: rankData, isLoading: isRankLoading, isFetching: isRankFetching } = useQuery(['rank', summonerId], () => fetchRank(summonerId));
   return {
     rank: rankData?.data,
     isRankLoading,
@@ -37,10 +49,9 @@ export const useRank = (summonerId = '') => {
   };
 }
 
-export const useSummonerList = (): {summonerList: string[]} => {
-  const {data} = useQuery('summonerList', () => getLocalStorageByNameList());
+export const useSummonerList = (): { summonerList: string[] } => {
+  const { data } = useQuery('summonerList', () => getLocalStorageByNameList());
   return {
     summonerList: data as string[],
   };
 };
-

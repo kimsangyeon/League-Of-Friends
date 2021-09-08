@@ -1,7 +1,7 @@
+import { checkExistSummoner } from "@hooks/summoner";
 import { getLocalStorageByNameList, setLocalStorageByNameList } from "@utils/storageUtils";
 import { MouseEvent, useState } from "react";
-import { useMutation, useQueryClient } from "react-query";
-
+import { useQueryClient } from "react-query";
 
 const RegisterSummoner = () => {
   const queryClient = useQueryClient();
@@ -9,9 +9,12 @@ const RegisterSummoner = () => {
 
   const onRegister = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setLocalStorageByNameList(summonerName);
-    setSummonerName('');
-    queryClient.setQueryData('summonerList', () => getLocalStorageByNameList());
+
+    if (await checkExistSummoner(summonerName)) {
+      setLocalStorageByNameList(summonerName);
+      setSummonerName('');
+      queryClient.setQueryData('summonerList', () => getLocalStorageByNameList());
+    }
   };
 
   return (
