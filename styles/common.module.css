@@ -39,3 +39,32 @@
   line-height: 2;
   width: 350px;
 }
+
+.leadWrap {
+  display: block;
+}
+
+.leadUL {
+  display: table;
+  min-width: 950px;
+}
+
+.leadUL li {
+  display: table-cell;
+  border: 1px solid;
+  text-align: center;
+}
+
+.leadUL li .leadTitle {
+  padding: 10px 0;
+  font-weight: 800;
+  border-bottom: 1px solid;
+}
+
+.leadUL li .leadSummoners {
+  margin: 10px;
+}
+
+.leadUL li .leadSummoners div {
+  margin: 10px 0;
+}
