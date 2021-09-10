@@ -9,6 +9,16 @@ export const fetchSummoner = async (summonerName = '') => {
   return await apiGet(`${GET_SUMMONER_BY_NAME_URL}/${summonerName}`);
 };
 
+export const fetchSummonerList = async (nameList = []) => {
+  if (nameList.length === 0) return await { data: {}, isLoading: false, isFetching: false, status: 400 };
+
+  const summonerList = nameList.map(name => (
+    apiGet(`${GET_SUMMONER_BY_NAME_URL}/${name}`)
+  ));
+
+  return await Promise.allSettled(summonerList);
+};
+
 export const checkExistSummoner = async (summonerName = '') => {
   if (!summonerName) return false;
 
