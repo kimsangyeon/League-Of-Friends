@@ -29,7 +29,7 @@ const Info = ({ name }: InfoProps) => {
                     <Rank id={summoner.id} />
                   </td>
                   <td className={styles.colWrap}>
-                    <MatchInfo puuid={summoner?.puuid} />
+                    <MatchInfo puuid={summoner?.puuid} name={summoner.name} />
                   </td>
                 </tr>
               )

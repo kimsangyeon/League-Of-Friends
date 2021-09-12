@@ -5,6 +5,7 @@ import Info from '@components/info';
 import styles from '@styles/Home.module.css'
 import RegisterSummoner from '@components/RegisterSummoner';
 import { useSummonerList } from '@hooks/summoner';
+import Lead from '@components/lead';
 
 const Home: NextPage = () => {
   const {summonerList} = useSummonerList();
@@ -19,6 +20,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <RegisterSummoner />
+        <Lead />
         {summonerList && summonerList?.map(name => (
           <Info name={name} key={name}/>
         ))}

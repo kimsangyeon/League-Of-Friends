@@ -158,3 +158,11 @@ export interface MatchInfo {
     participants: string[];
   };
 }
+
+export interface MatchScoreInfo {
+  kills: number;
+  deaths: number;
+  assists: number;
+  win: number;
+  lose: number;
+}

@@ -1,15 +1,20 @@
 import { useMatchIdList, useMatchList } from "@hooks/match";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import styles from '@styles/common.module.css';
+import { useQueryClient } from "react-query";
+import { MatchScoreInfo } from "@models/match";
+import { LeadInfo } from "@models/lead";
 
 interface MatchInfoProps {
   puuid: string;
+  name: string;
 }
 
-const MatchInfo = ({puuid}: MatchInfoProps) => {
+const MatchInfo = ({puuid, name}: MatchInfoProps) => {
+  const queryClient = useQueryClient();
   const { matchIdList, isMatchIdListLoading, isMatchIdListFetching } = useMatchIdList(puuid);
   const { matchList, isMatchListLoading, isMatchListFetching } = useMatchList(matchIdList);
-  const info = useMemo(() => matchList?.reduce((info, match) => {
+  const info: MatchScoreInfo = useMemo(() => matchList?.reduce((info, match) => {
     const index = match?.metadata?.participants?.findIndex((p: string) => p === puuid);
 
     if (index === undefined) return info;
@@ -23,6 +28,18 @@ const MatchInfo = ({puuid}: MatchInfoProps) => {
       lose: win ? info.lose : ++info.lose,
     };
   }, {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0}), [matchList, puuid]);
+
+  useEffect(() => {
+    const leadInfo: LeadInfo[] = queryClient.getQueryData('leadInfo') || [];
+    const prevInfo = leadInfo.find(info => info.name === name);
+    if (prevInfo) {
+      prevInfo.info = info;
+    } else {
+      leadInfo.push({name, info});
+    }
+
+    queryClient.setQueryData('leadInfo', leadInfo);
+  }, [info, name, queryClient]);
 
   if (
     isMatchIdListLoading || isMatchIdListFetching ||
