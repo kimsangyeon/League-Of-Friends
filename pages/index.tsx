@@ -19,8 +19,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <Lead />
         <RegisterSummoner />
+        <Lead />
         {summonerList && summonerList?.map(name => (
           <Info name={name} key={name}/>
         ))}

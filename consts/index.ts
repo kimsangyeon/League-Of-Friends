@@ -5,7 +5,7 @@ export const GET_MATCH_BY_MATCHID = '/lol/match/v5/matches';
 
 export const PROFILE_ICON_URL = 'http://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon';
 
-export const RIOT_KEY = 'RGAPI-5e27f8e5-2fd7-4ffe-9576-622a0826b9fc';
+export const RIOT_KEY = 'RGAPI-c025a2f7-5f74-46da-bc40-a7972c3b197c';
 
 export const RANK_TO_MAP: {[key: string]: string} = {
   'RANKED_SOLO_5x5': '솔로랭크',

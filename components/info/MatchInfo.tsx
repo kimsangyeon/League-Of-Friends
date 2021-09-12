@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react";
 import styles from '@styles/common.module.css';
 import { useQueryClient } from "react-query";
 import { MatchScoreInfo } from "@models/match";
+import { LeadInfo } from "@models/lead";
 
 interface MatchInfoProps {
   puuid: string;
@@ -29,7 +30,7 @@ const MatchInfo = ({puuid, name}: MatchInfoProps) => {
   }, {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0}), [matchList, puuid]);
 
   useEffect(() => {
-    const leadInfo: {name: string, info : MatchScoreInfo}[] = queryClient.getQueryData('leadInfo') || [];
+    const leadInfo: LeadInfo[] = queryClient.getQueryData('leadInfo') || [];
     const prevInfo = leadInfo.find(info => info.name === name);
     if (prevInfo) {
       prevInfo.info = info;
