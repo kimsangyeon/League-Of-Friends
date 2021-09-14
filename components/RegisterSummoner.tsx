@@ -28,7 +28,7 @@ const RegisterSummoner = () => {
         onChange={(e) => setSummonerName(e.target.value)}
       />
       <button className={styles.registerButton} onClick={onRegister}>
-        <Image src="/images/icon/search.png" alt="search_icon" width="30" height="30" />
+        <Image src="/images/icon/add.png" alt="search_icon" width="30" height="30" />
       </button>
     </div>
   )
