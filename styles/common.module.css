@@ -8,6 +8,10 @@
   background-color: ghostwhite;
 }
 
+.infoWrap:hover {
+  background-color: honeydew;
+}
+
 .colWrap {
   flex: 1;
   border: 1px solid whitesmoke;
@@ -91,4 +95,8 @@
 
 .leadUL li .leadSummoners div {
   margin: 10px 0;
+}
+
+.leadUL li .leadSummoners div:nth-child(1) {
+  font-weight: 700;
 }
