@@ -10,6 +10,7 @@
 
 .infoWrap:hover {
   background-color: honeydew;
+  cursor: pointer;
 }
 
 .colWrap {
