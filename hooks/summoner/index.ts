@@ -1,12 +1,14 @@
 import { useQuery } from 'react-query';
 import { apiGet } from '@utils/apiUtils';
-import { GET_SUMMONER_BY_NAME_URL, GET_SUMMONER_RANK_BY_ID_URL } from '@consts/index';
+import { GET_SUMMONER_BY_NAME_URL, GET_SUMMONER_RANK_BY_ID_URL, API_PREFIX_FOR_SERVER } from '@consts/index';
 import { getLocalStorageByNameList } from '@utils/storageUtils';
 
-export const fetchSummoner = async (summonerName = '') => {
+export const fetchSummoner = async (summonerName = '', isServer = false) => {
   if (!summonerName) return await { data: {}, isLoading: false, isFetching: false, status: 400 };
 
-  return await apiGet(`${GET_SUMMONER_BY_NAME_URL}/${summonerName}`);
+  return await apiGet(
+    `${isServer ? API_PREFIX_FOR_SERVER : ''}${GET_SUMMONER_BY_NAME_URL}/${summonerName}`
+  );
 };
 
 export const fetchSummonerList = async (nameList = []) => {
@@ -44,10 +46,10 @@ export const useSummoner = (summonerName = '') => {
   };
 };
 
-export const fetchRank = async (summonerId = '') => {
+export const fetchRank = async (summonerId = '', isServer = false) => {
   if (!summonerId) return await { data: {}, isLoading: false, isFetching: false };
 
-  return await apiGet(`${GET_SUMMONER_RANK_BY_ID_URL}/${summonerId}`);
+  return await apiGet(`${isServer ? API_PREFIX_FOR_SERVER : ''}${GET_SUMMONER_RANK_BY_ID_URL}/${summonerId}`);
 }
 
 export const useRank = (summonerId = '') => {
