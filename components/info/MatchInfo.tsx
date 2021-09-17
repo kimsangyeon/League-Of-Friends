@@ -1,9 +1,9 @@
-import { useMatchIdList, useMatchList } from "@hooks/match";
-import { useEffect, useMemo } from "react";
+import { useMatchIdList, useMatchList } from '@hooks/match';
+import { useEffect, useMemo } from 'react';
 import styles from '@styles/common.module.css';
-import { useQueryClient } from "react-query";
-import { MatchScoreInfo } from "@models/match";
-import { LeadInfo } from "@models/lead";
+import { useQueryClient } from 'react-query';
+import { MatchScoreInfo } from '@models/match';
+import { LeadInfo } from '@models/lead';
 
 interface MatchInfoProps {
   puuid: string;

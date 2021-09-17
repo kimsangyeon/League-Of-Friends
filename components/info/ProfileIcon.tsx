@@ -3,7 +3,7 @@ import styles from '@styles/common.module.css';
 import { PROFILE_ICON_URL } from "@consts/index";
 
 interface ProfileProps {
-  profileIconId: string;
+  profileIconId: number;
   name: string;
 }
 

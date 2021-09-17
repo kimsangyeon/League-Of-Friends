@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { useSummoner } from "@hooks/summoner";
+import { useSummoner } from '@hooks/summoner';
 import styles from '@styles/common.module.css';
 import Rank from './Rank';
 import ProfileIcon from './ProfileIcon';

@@ -1,4 +1,4 @@
-import { MatchScoreInfo } from "./match";
+import { MatchScoreInfo } from './match';
 
 export interface LeadInfo {
   name: string;

@@ -101,3 +101,12 @@
 .leadUL li .leadSummoners div:nth-child(1) {
   font-weight: 700;
 }
+
+.detailWrap {
+  width: 100%;
+  height: 100%;
+}
+
+.detailWrap .infoWrap {
+  pointer-events: none;
+}
