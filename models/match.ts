@@ -166,3 +166,5 @@ export interface MatchScoreInfo {
   win: number;
   lose: number;
 }
+
+export type MatchIdList = string[];
