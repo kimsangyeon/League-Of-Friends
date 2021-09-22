@@ -1,4 +1,5 @@
-export const API_PREFIX_FOR_SERVER = 'https://kr.api.riotgames.com';
+export const API_SUMMONER_PREFIX_FOR_SERVER = 'https://kr.api.riotgames.com';
+export const API_MATCH_PREFIX_FOR_SERVER = 'https://asia.api.riotgames.com';
 
 export const GET_SUMMONER_BY_NAME_URL = '/lol/summoner/v4/summoners/by-name';
 export const GET_SUMMONER_RANK_BY_ID_URL = '/lol/league/v4/entries/by-summoner';

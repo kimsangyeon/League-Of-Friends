@@ -1,19 +1,19 @@
 import { useQuery } from 'react-query';
 import { apiGet } from '@utils/apiUtils';
-import { GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID } from '@consts/index';
-import { MatchInfo } from '@models/match';
+import { GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID, API_MATCH_PREFIX_FOR_SERVER } from '@consts/index';
+import { MatchIdList, MatchInfo } from '@models/match';
 
 const delay = (time = 5000) => {
   return new Promise((r) => setTimeout(r, time))
 };
 
-export const fetchMatchIdList = async (puuid = '') => {
-  if (!puuid) return { data: {}, isLoading: false, isFetching: false };
+export const fetchMatchIdList = async (puuid = '', isServer = false) => {
+  if (!puuid) return null;
 
-  return await apiGet(`${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=5`);
+  return await apiGet<MatchIdList>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=5`);
 };
 
-export const useMatchIdList = (puuid = ''): { matchIdList: string[], isMatchIdListLoading: boolean, isMatchIdListFetching: boolean } => {
+export const useMatchIdList = (puuid = ''): { matchIdList: string[] | undefined, isMatchIdListLoading: boolean, isMatchIdListFetching: boolean } => {
   const {
     data: matchIdListData,
     isLoading: isMatchIdListLoading,
@@ -33,11 +33,11 @@ export const useMatchIdList = (puuid = ''): { matchIdList: string[], isMatchIdLi
   };
 };
 
-export const fetchMatchList = async (matchIdList: string[] = []) => {
+export const fetchMatchList = async (matchIdList: string[] = [], isServer = false) => {
   if (matchIdList.length === 0) return [];
 
   const matchList = matchIdList.map(matchId => (
-    apiGet(`${GET_MATCH_BY_MATCHID}/${matchId}`)
+    apiGet<MatchInfo[]>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_BY_MATCHID}/${matchId}`)
   ));
   return await Promise.allSettled(matchList);
 };
