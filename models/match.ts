@@ -1,4 +1,4 @@
-interface Participants {
+export interface Participants {
   assists: number;
   baronKills: number;
   bountyLevel: number;

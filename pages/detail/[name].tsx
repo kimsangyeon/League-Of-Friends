@@ -3,14 +3,14 @@ import { GetServerSideProps } from 'next';
 import styles from '@styles/common.module.css';
 import { fetchSummoner } from '@hooks/summoner';
 import { SummonerInfo } from '@models/summoner';
-import { MatchInfo } from '@models/match';
+import { Participants } from '@models/match';
 
 import Info from '@components/info';
 import { fetchMatchIdList, fetchMatchList } from '@hooks/match';
 
 interface DetailPageProps {
   summoner: SummonerInfo;
-  matchList: MatchInfo[];
+  matchList: Participants[];
 }
 
 const DetailPage = ({summoner, matchList}: DetailPageProps) => {
@@ -33,7 +33,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     return {
       props: {
         summoner: summoner?.data,
-        matchList: (matchList as any[]).map(match => match?.value?.data),
+        matchList: (matchList as any[]).map(match => {
+          const detail = match?.value?.data?.info?.participants?.find((p: { puuid: string | undefined; }) => (
+            p?.puuid === summoner?.data.puuid
+          ));
+          return detail;
+        }),
       },
     };
   } catch (e) {
