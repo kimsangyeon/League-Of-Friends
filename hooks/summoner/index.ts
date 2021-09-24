@@ -2,7 +2,7 @@ import { useQuery } from 'react-query';
 import { apiGet } from '@utils/apiUtils';
 import { GET_SUMMONER_BY_NAME_URL, GET_SUMMONER_RANK_BY_ID_URL, API_SUMMONER_PREFIX_FOR_SERVER } from '@consts/index';
 import { getLocalStorageByNameList } from '@utils/storageUtils';
-import { SummonerInfo } from '@models/summoner';
+import { RankInfo, SummonerInfo } from '@models/summoner';
 
 export const fetchSummoner = async (summonerName = '', isServer = false) => {
   if (!summonerName) return null;
@@ -48,12 +48,12 @@ export const useSummoner = (summonerName = '') => {
 };
 
 export const fetchRank = async (summonerId = '', isServer = false) => {
-  if (!summonerId) return await { data: {}, isLoading: false, isFetching: false };
+  if (!summonerId) return null;
 
-  return await apiGet(`${isServer ? API_SUMMONER_PREFIX_FOR_SERVER : ''}${GET_SUMMONER_RANK_BY_ID_URL}/${summonerId}`);
+  return await apiGet<RankInfo[]>(`${isServer ? API_SUMMONER_PREFIX_FOR_SERVER : ''}${GET_SUMMONER_RANK_BY_ID_URL}/${summonerId}`);
 }
 
-export const useRank = (summonerId = '') => {
+export const useRank = (summonerId = ''): { rank: RankInfo[] | undefined; isRankLoading: boolean; isRankFetching: boolean} => {
   const { data: rankData, isLoading: isRankLoading, isFetching: isRankFetching } = useQuery(['rank', summonerId], () => fetchRank(summonerId));
   return {
     rank: rankData?.data,
