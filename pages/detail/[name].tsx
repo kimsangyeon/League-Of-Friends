@@ -7,6 +7,7 @@ import { Participants } from '@models/match';
 
 import Info from '@components/info';
 import { fetchMatchIdList, fetchMatchList } from '@hooks/match';
+import DetailList from '@components/detail/DetailList';
 
 interface DetailPageProps {
   summoner: SummonerInfo;
@@ -18,6 +19,7 @@ const DetailPage = ({summoner, matchList}: DetailPageProps) => {
   return (
     <div className={styles.detailWrap}>
       <Info name={summoner?.name} key={summoner?.name}/>
+      <DetailList matchList={matchList} />
     </div>
   );
 };

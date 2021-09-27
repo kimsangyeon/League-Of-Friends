@@ -110,3 +110,51 @@
 .detailWrap .infoWrap {
   pointer-events: none;
 }
+
+.detailListWrap {
+  margin: 20px;
+}
+
+.detail {
+  margin: 10px;
+  font-weight: 700;
+  color: gray;
+  
+}
+
+.detail .win {
+  background-color: lightskyblue;
+}
+
+.detail .lose {
+  background-color: lightpink;
+}
+
+.detail .championIcon {
+  margin: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+.detail .championLevel {
+  position: absolute;
+  left: 30px;
+  top: 30px;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.detail .detahs {
+  color: red;
+}
+
+.detail .itemWrap {
+  margin: 10px;
+  borer: 1px solid;
+}
+
+.detail .itemWrap .imgIcon {
+  margin: 0 2px;
+  display: inline-block;
+}
