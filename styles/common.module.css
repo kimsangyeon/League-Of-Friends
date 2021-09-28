@@ -116,10 +116,11 @@
 }
 
 .detail {
+  width: 100%;
   margin: 10px;
   font-weight: 700;
   color: gray;
-  
+  display: table;
 }
 
 .detail .win {
@@ -131,26 +132,52 @@
 }
 
 .detail .championIcon {
-  margin: 10px;
-  display: inline-block;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 95px;
+  padding: 10px;
   position: relative;
+  font-size: 12px;
+}
+
+.detail .championLevelWrap {
+  display: table-cell;
+  vertical-align: middle;
+  width: 90px;
+  padding: 10px;
+}
+
+.detail .championLevelWrap .winText {
+  color: rgb(72, 72, 198);
+}
+
+.detail .championLevelWrap .loseText {
+  color: rgb(165, 69, 69);
 }
 
 .detail .championLevel {
-  position: absolute;
-  left: 30px;
-  top: 30px;
   color: white;
-  font-size: 10px;
+  font-size: 16px;
   font-weight: 500;
 }
 
-.detail .detahs {
+.detail .killDeathsAssists {
+  display: table-cell;
+  vertical-align: middle;
+  width: 100px;
+  padding: 10px;
+}
+
+.detail .deaths {
   color: red;
 }
 
 .detail .itemWrap {
-  margin: 10px;
+  display: table-cell;
+  vertical-align: middle;
+  width: 250px;
+  padding: 10px;
   borer: 1px solid;
 }
 

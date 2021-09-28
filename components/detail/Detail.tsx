@@ -27,9 +27,15 @@ const Detail: React.FC<Detail> = ({match}) => {
             alt="champion name"
             onError={onHandledError}
           />
-          <span className={styles.championLevel}>{champLevel}</span>
+          <div>{championName}</div>
         </div>
-        <span>{kills}</span> / <span className={styles.detahs}>{deaths}</span> / <span>{assists}</span>
+        <div className={styles.championLevelWrap}>
+          <span className={win ? styles.winText : styles.loseText}>{win ? '승리' : '패배'}</span>
+          <span className={styles.championLevel}>Level: {champLevel}</span>
+        </div>
+        <div className={styles.killDeathsAssists}>
+          <span>{kills}</span> / <span className={styles.deaths}>{deaths}</span> / <span>{assists}</span>
+        </div>
         <div className={styles.itemWrap}>
           {items.map(i => (
             <div className={styles.imgIcon} key={i}>
