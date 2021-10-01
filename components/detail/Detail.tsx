@@ -3,13 +3,14 @@ import Image from 'next/image';
 
 import { Participants } from '@models/match';
 import styles from '@styles/common.module.css';
+import { getDaysAgo } from '@utils/dateUtils';
 
 interface Detail {
   match: Participants;
 }
 
 const Detail: React.FC<Detail> = ({match}) => {
-  const {kills, deaths, assists, win, championName, champLevel} = match;
+  const {kills, deaths, assists, win, championName, champLevel, gameCreation} = match;
   const items = [match.item0, match.item1, match.item2, match.item3, match.item4, match.item5, match.item6].filter(i => i !== 0);
   const onHandledError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     e.currentTarget.onerror = () => {};
@@ -28,10 +29,13 @@ const Detail: React.FC<Detail> = ({match}) => {
             onError={onHandledError}
           />
           <div>{championName}</div>
-        </div>
-        <div className={styles.championLevelWrap}>
-          <span className={win ? styles.winText : styles.loseText}>{win ? '승리' : '패배'}</span>
           <span className={styles.championLevel}>Level: {champLevel}</span>
+        </div>
+        <div className={styles.detailMatchInfoWrap}>
+          <span className={win ? styles.winText : styles.loseText}>{win ? '승리' : '패배'}</span>
+          {match &&
+            <div className={styles.daysAgo}>{getDaysAgo(new Date(match.gameCreation as number))}</div>
+          }
         </div>
         <div className={styles.killDeathsAssists}>
           <span>{kills}</span> / <span className={styles.deaths}>{deaths}</span> / <span>{assists}</span>

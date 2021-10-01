@@ -117,6 +117,7 @@ export interface Participants {
   wardsKilled: number;
   wardsPlaced: number;
   win: boolean;
+  gameCreation?: number;
 }
 
 interface Team {

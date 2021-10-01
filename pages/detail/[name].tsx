@@ -39,7 +39,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
           const detail = match?.value?.data?.info?.participants?.find((p: { puuid: string | undefined; }) => (
             p?.puuid === summoner?.data.puuid
           ));
-          return detail;
+          return {
+            ...detail,
+            gameCreation: match?.value?.data?.info.gameCreation,
+          };
         }),
       },
     };

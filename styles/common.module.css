@@ -141,24 +141,28 @@
   font-size: 12px;
 }
 
-.detail .championLevelWrap {
+.detail .detailMatchInfoWrap {
   display: table-cell;
   vertical-align: middle;
   width: 90px;
   padding: 10px;
 }
 
-.detail .championLevelWrap .winText {
+.detail .detailMatchInfoWrap .winText {
   color: rgb(72, 72, 198);
 }
 
-.detail .championLevelWrap .loseText {
+.detail .detailMatchInfoWrap .loseText {
   color: rgb(165, 69, 69);
+}
+
+.detail .detailMatchInfoWrap .daysAgo {
+  font-size: 10px;
 }
 
 .detail .championLevel {
   color: white;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
 }
 
