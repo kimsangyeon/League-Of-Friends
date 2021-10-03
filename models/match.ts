@@ -1,4 +1,4 @@
-interface Participants {
+export interface Participants {
   assists: number;
   baronKills: number;
   bountyLevel: number;
@@ -117,6 +117,7 @@ interface Participants {
   wardsKilled: number;
   wardsPlaced: number;
   win: boolean;
+  gameCreation?: number;
 }
 
 interface Team {
@@ -166,3 +167,5 @@ export interface MatchScoreInfo {
   win: number;
   lose: number;
 }
+
+export type MatchIdList = string[];

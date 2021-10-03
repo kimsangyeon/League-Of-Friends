@@ -2,7 +2,7 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import React from 'react';
 import Info from '@components/info';
-import styles from '@styles/Home.module.css'
+import styles from '@styles/Home.module.css';
 import RegisterSummoner from '@components/RegisterSummoner';
 import { useSummonerList } from '@hooks/summoner';
 import Lead from '@components/lead';

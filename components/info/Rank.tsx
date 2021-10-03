@@ -17,7 +17,7 @@ const Rank = ({id}: RankProps) => {
 
   return (
     <div className={styles.rankWrap}>
-      {RANK_LIST.map((type: string, index: number) => (
+      {rank && RANK_LIST.map((type: string, index: number) => (
         <div className={styles.imageInlineWrap} key={type}>
           <Image
             src={`/images/${rank[index]?.tier || UNRANKED}.png`}

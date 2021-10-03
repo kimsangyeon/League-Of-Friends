@@ -1,4 +1,14 @@
 
+export interface SummonerInfo {
+  accountId: string;
+  id: string;
+  name: string;
+  profileIconId: number;
+  puuid: string;
+  revisionDate: number;
+  summonerLevel: number;
+}
+
 export interface RankInfo {
   freshBlood: boolean;
   hotStreak: boolean;
