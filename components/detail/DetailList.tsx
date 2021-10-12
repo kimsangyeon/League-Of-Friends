@@ -7,15 +7,12 @@ interface DetailList {
   matchList: Participants[];
 }
 
-const DetailList: React.FC<DetailList> = ({matchList}) => {
-
-  return (
-    <div className={styles.detailListWrap}>
-      {matchList.map((match, idx) => (
-        <Detail match={match} key={`${match.participantId}_${idx}`} />
-      ))}
-    </div>
-  );
-};
+const DetailList: React.FC<DetailList> = ({matchList}) => (
+  <div className={styles.detailListWrap}>
+    {matchList.map((match, idx) => (
+      <Detail match={match} key={`${match.participantId}_${idx}`} />
+    ))}
+  </div>
+);
 
 export default DetailList;
