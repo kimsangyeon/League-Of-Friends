@@ -34,7 +34,7 @@ const Detail: React.FC<Detail> = ({match}) => {
         <div className={styles.detailMatchInfoWrap}>
           <span className={win ? styles.winText : styles.loseText}>{win ? '승리' : '패배'}</span>
           {match &&
-            <div className={styles.daysAgo}>{getDaysAgo(new Date(match.gameCreation as number))}</div>
+            <div className={styles.daysAgo}>{getDaysAgo(new Date(gameCreation as number))}</div>
           }
         </div>
         <div className={styles.killDeathsAssists}>
