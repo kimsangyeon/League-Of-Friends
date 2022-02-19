@@ -1,11 +1,15 @@
+import React from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React from 'react';
+import Link from 'next/link';
+
 import Info from '@components/info';
-import styles from '@styles/Home.module.css';
-import RegisterSummoner from '@components/register';
-import { useSummonerList } from '@hooks/summoner';
 import Lead from '@components/lead';
+import RegisterSummoner from '@components/register';
+import styles from '@styles/Home.module.css';
+import { useSummonerList } from '@hooks/summoner';
+
+
 
 const Home: NextPage = () => {
   const {summonerList} = useSummonerList();
@@ -17,6 +21,18 @@ const Home: NextPage = () => {
         <meta name="description" content="league of legends" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <header className={styles.header}>
+        <nav className={styles.nav}>
+          <div>
+            <span className={styles.headerTitle}>
+              <Link href="/">
+                <a >Leage-Of-Friends</a>
+              </Link>
+            </span>
+          </div>
+        </nav>
+      </header>
 
       <main className={styles.main}>
         <RegisterSummoner />

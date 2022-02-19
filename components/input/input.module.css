@@ -1,6 +1,7 @@
 .input {
   outline: none;
-  padding: 10px 3px 10px 15px;
+  padding: 10px 10px 10px 15px;
+  margin-right: 1px;
   vertical-align: bottom;
   border: none;
 }
