@@ -3,6 +3,8 @@
   width: 100%;
   top: 0;
   border-bottom: 1px solid #6e7489;
+  z-index: 999px;
+  background-color: white;
 }
 
 .nav {

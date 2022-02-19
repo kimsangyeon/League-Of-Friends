@@ -5,6 +5,7 @@ import { Hydrate } from 'react-query/hydration';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import '@styles/globals.css';
 import Header from '@components/header';
+import Footer from '@components/footer';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = React.useState(() => new QueryClient({
@@ -23,6 +24,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Header />
       
         <Component {...pageProps} />
+
+        <Footer />
       </Hydrate>
       <ReactQueryDevtools />
     </QueryClientProvider>
