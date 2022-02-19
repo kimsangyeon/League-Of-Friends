@@ -1,9 +1,11 @@
 import { MouseEvent, useState } from 'react';
-import Image from 'next/image';
 import { useQueryClient } from 'react-query';
-import styles from '@styles/common.module.css';
+import styles from './register.module.css';
 import { checkExistSummoner } from '@hooks/summoner';
 import { getLocalStorageByNameList, setLocalStorageByNameList } from '@utils/storageUtils';
+import Search from '@components/input/search';
+import Button from '@components/button';
+import Text from '@components/text';
 
 const RegisterSummoner = () => {
   const queryClient = useQueryClient();
@@ -20,16 +22,12 @@ const RegisterSummoner = () => {
   };
 
   return (
-    <div className={styles.registerWrap}>
-      <input
-        className={styles.registerInput}
-        value={summonerName}
-        placeholder="소환사명, 소환사명, ..."
-        onChange={(e) => setSummonerName(e.target.value)}
-      />
-      <button className={styles.registerButton} onClick={onRegister}>
-        <Image src="/images/icon/add.png" alt="search_icon" width="30" height="30" />
-      </button>
+    <div className={styles.registerContainer}>
+      <Text text={'친구추가'} />
+      <div className={styles.registerWrap}>
+        <Search name={summonerName} setName={setSummonerName} />
+        <Button onClick={onRegister} />
+      </div>
     </div>
   )
 };
