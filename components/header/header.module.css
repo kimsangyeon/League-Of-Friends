@@ -1,0 +1,15 @@
+.header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  border-bottom: 1px solid #6e7489;
+}
+
+.nav {
+  margin: 20px;
+}
+
+.headerTitle {
+  font-size: 20px;
+  font-weight: 800;
+}

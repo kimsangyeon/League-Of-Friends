@@ -1,7 +1,6 @@
 import React from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Link from 'next/link';
 
 import Info from '@components/info';
 import Lead from '@components/lead';
@@ -21,18 +20,6 @@ const Home: NextPage = () => {
         <meta name="description" content="league of legends" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <header className={styles.header}>
-        <nav className={styles.nav}>
-          <div>
-            <span className={styles.headerTitle}>
-              <Link href="/">
-                <a >Leage-Of-Friends</a>
-              </Link>
-            </span>
-          </div>
-        </nav>
-      </header>
 
       <main className={styles.main}>
         <RegisterSummoner />
