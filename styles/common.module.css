@@ -29,23 +29,6 @@
   width: 155px;
 }
 
-.registerWrap {
-  border: 1px solid lightgray;
-}
-
-.registerInput {
-  outline: none;
-  padding: 10px 40px 10px 15px;
-  vertical-align: bottom;
-  border: none;
-}
-
-.registerButton {
-  cursor: pointer;
-  background-color: lightskyblue;
-  border: none;
-}
-
 .btn {
   margin: 5px;
 }

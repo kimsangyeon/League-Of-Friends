@@ -1,0 +1,12 @@
+.registerWrap {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 200px;
+}
+
+.registerContainer {
+  margin: 25px;
+}

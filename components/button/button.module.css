@@ -1,0 +1,9 @@
+.registerButton {
+  cursor: pointer;
+  background-color: #45b3f7;
+  color: beige;
+  border: none;
+  height: 100%;
+  font-size: 13px;
+  position: absolute;
+}
