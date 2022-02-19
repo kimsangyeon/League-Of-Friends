@@ -8,8 +8,6 @@ import RegisterSummoner from '@components/register';
 import styles from '@styles/Home.module.css';
 import { useSummonerList } from '@hooks/summoner';
 
-
-
 const Home: NextPage = () => {
   const {summonerList} = useSummonerList();
 
@@ -28,10 +26,6 @@ const Home: NextPage = () => {
           <Info name={name} key={name}/>
         ))}
       </main>
-
-      <footer className={styles.footer}>
-        <div>footer</div>
-      </footer>
     </div>
   );
 };
