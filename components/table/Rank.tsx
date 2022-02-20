@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { RANK_TO_MAP } from '@consts/index';
-import { useRank } from "@hooks/summoner";
+import {RANK_TO_MAP} from '@consts/index';
+import {useRank} from "@hooks/summoner";
 import styles from '@styles/common.module.css'
 
 interface RankProps {
@@ -16,7 +16,7 @@ const Rank = ({id}: RankProps) => {
   if (isRankLoading || isRankFetching) return <div>Loading</div>;
 
   return (
-    <div className={styles.rankWrap}>
+    <>
       {rank && RANK_LIST.map((type: string, index: number) => (
         <div className={styles.imageInlineWrap} key={type}>
           <Image
@@ -29,7 +29,7 @@ const Rank = ({id}: RankProps) => {
           <div>{RANK_TO_MAP[rank[index]?.queueType] || UNRANKED}</div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

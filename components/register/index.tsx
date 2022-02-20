@@ -1,11 +1,10 @@
-import { MouseEvent, useState } from 'react';
-import { useQueryClient } from 'react-query';
+import {MouseEvent, useState} from 'react';
+import {useQueryClient} from 'react-query';
 import styles from './register.module.css';
-import { checkExistSummoner } from '@hooks/summoner';
-import { getLocalStorageByNameList, setLocalStorageByNameList } from '@utils/storageUtils';
+import {checkExistSummoner} from '@hooks/summoner';
+import {getLocalStorageByNameList, setLocalStorageByNameList} from '@utils/storageUtils';
 import Search from '@components/input/search';
 import Button from '@components/button';
-import Text from '@components/text';
 
 const RegisterSummoner = () => {
   const queryClient = useQueryClient();
@@ -23,7 +22,6 @@ const RegisterSummoner = () => {
 
   return (
     <div className={styles.registerContainer}>
-      <Text text={'친구추가'} />
       <div className={styles.registerWrap}>
         <Search name={summonerName} setName={setSummonerName} />
         <Button onClick={onRegister} />

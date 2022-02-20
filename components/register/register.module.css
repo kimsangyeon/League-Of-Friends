@@ -1,6 +1,6 @@
 .registerWrap {
-  border: 1px solid lightgray;
-  border-radius: 2px;
+  border-radius: 10px;
+  overflow: hidden;
   top: 0;
   left: 0;
   width: 200px;
