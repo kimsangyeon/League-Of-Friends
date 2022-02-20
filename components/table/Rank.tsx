@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import { RANK_TO_MAP } from '@consts/index';
-import { useRank } from "@hooks/summoner";
+import {RANK_TO_MAP} from '@consts/index';
+import {useRank} from "@hooks/summoner";
 import styles from '@styles/common.module.css'
 
 interface RankProps {

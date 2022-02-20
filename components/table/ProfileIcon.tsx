@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { PROFILE_ICON_URL } from "@consts/index";
+import {PROFILE_ICON_URL} from "@consts/index";
 
 interface ProfileProps {
   profileIconId: number;
