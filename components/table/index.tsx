@@ -10,6 +10,16 @@ const Table = ({list}: TableProps) => {
   return (
     <div>
       <table className={styles.table}>
+        <colgroup>
+          <col style={{width: '15%'}}/>
+          <col />
+          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}}/>
+        </colgroup>
         <thead>
           <tr className={styles.theadRow}>
             <th className={styles.th}>순위</th>
