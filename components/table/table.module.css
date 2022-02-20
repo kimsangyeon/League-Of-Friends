@@ -1,0 +1,35 @@
+.table {
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.theadRow {
+  height: 60px;
+  background: #36304a;
+}
+
+.th {
+  font-family: OpenSans-Regular;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.2;
+  font-weight: unset;
+}
+
+.tbodyRow {
+  height: 50px;
+  border-bottom: 1px solid #dce3f5;
+}
+
+.td {
+  text-align: center;
+  font-family: OpenSans-Regular;
+  font-size: 15px;
+  color: #808080;
+  line-height: 1.2;
+  font-weight: unset;
+}

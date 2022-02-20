@@ -8,7 +8,7 @@ export const GET_MATCH_BY_MATCHID = '/lol/match/v5/matches';
 
 export const PROFILE_ICON_URL = 'http://ddragon.leagueoflegends.com/cdn/12.4.1/img/profileicon';
 
-export const RIOT_KEY = '';
+export const RIOT_KEY = 'RGAPI-e1c585b3-835a-4ad6-baab-55abf39b583b';
 
 export const RANK_TO_MAP: {[key: string]: string} = {
   'RANKED_SOLO_5x5': '솔로랭크',

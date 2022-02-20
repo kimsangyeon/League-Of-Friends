@@ -23,7 +23,6 @@ const RegisterSummoner = () => {
 
   return (
     <div className={styles.registerContainer}>
-      <Text text={'친구추가'} />
       <div className={styles.registerWrap}>
         <Search name={summonerName} setName={setSummonerName} />
         <Button onClick={onRegister} />

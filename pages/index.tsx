@@ -2,11 +2,10 @@ import React from 'react';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 
-import Info from '@components/info';
-import Lead from '@components/lead';
 import RegisterSummoner from '@components/register';
 import styles from '@styles/Home.module.css';
 import { useSummonerList } from '@hooks/summoner';
+import Table from '@components/table';
 
 const Home: NextPage = () => {
   const {summonerList} = useSummonerList();
@@ -21,10 +20,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <RegisterSummoner />
-        <Lead />
-        {summonerList && summonerList?.map(name => (
-          <Info name={name} key={name}/>
-        ))}
+        {summonerList && <Table list={summonerList} />}
       </main>
     </div>
   );
