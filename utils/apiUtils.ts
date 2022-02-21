@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { RIOT_KEY } from '@consts/index';
+import {RIOT_KEY} from '@consts/index';
 
 export const apiGet = async <T>(url = '') => {
   return await axios.get<T>(url, {
