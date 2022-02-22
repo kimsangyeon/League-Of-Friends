@@ -1,3 +1,5 @@
+import { ApiResponse } from './api';
+
 export interface Participants {
   assists: number;
   baronKills: number;
@@ -169,3 +171,11 @@ export interface MatchScoreInfo {
 }
 
 export type MatchIdList = string[];
+
+export interface MatchIdListReponse extends ApiResponse {
+  data: string[]
+}
+
+export interface MatchListResponse extends ApiResponse {
+  data: MatchInfo;
+}
