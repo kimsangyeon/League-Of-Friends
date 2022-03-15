@@ -1,7 +1,7 @@
 import useSWRImmutable from 'swr/immutable';
 import {apiGet} from '@utils/apiUtils';
 import {GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID} from '@consts/index';
-import {MatchIdListReponse, MatchInfo, MatchListResponse} from '@models/match';
+import {MatchIdListReponse, MatchResponse, MatchListResponse} from '@models/match';
 
 const useMatchList = (puuidList: string[]) => {
   const {data: matchIdList} = useSWRImmutable(['api/match/id/list', puuidList], async (_, list) => {
@@ -15,7 +15,7 @@ const useMatchList = (puuidList: string[]) => {
     )));
   });
   if (!Array.isArray(data)) return;
-  return data?.map((list: { data: any; }[]) => list.map(({data}: {data: MatchInfo}) => data?.info));
+  return data?.map((list: { data: any; }[]) => list.map(({data}: {data: MatchResponse}) => data?.info));
 };
 
 export default useMatchList;
