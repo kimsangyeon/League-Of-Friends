@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import { apiGet } from '@utils/apiUtils';
 import { GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID, API_MATCH_PREFIX_FOR_SERVER } from '@consts/index';
-import { MatchIdList, MatchInfo } from '@models/match';
+import { MatchIdList, MatchResponse } from '@models/match';
 
 const delay = (time = 5000) => {
   return new Promise((r) => setTimeout(r, time))
@@ -37,12 +37,12 @@ export const fetchMatchList = async (matchIdList: string[] = [], isServer = fals
   if (matchIdList.length === 0) return [];
 
   const matchList = matchIdList.map(matchId => (
-    apiGet<MatchInfo[]>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_BY_MATCHID}/${matchId}`)
+    apiGet<MatchResponse[]>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_BY_MATCHID}/${matchId}`)
   ));
   return await Promise.allSettled(matchList);
 };
 
-export const useMatchList = (matchIdList: string[] = []): { matchList: MatchInfo[], isMatchListLoading: boolean, isMatchListFetching: boolean } => {
+export const useMatchList = (matchIdList: string[] = []): { matchList: MatchResponse[], isMatchListLoading: boolean, isMatchListFetching: boolean } => {
   const {
     data: matchList,
     isLoading: isMatchListLoading,

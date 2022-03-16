@@ -1,3 +1,5 @@
+import {ApiResponse} from './api';
+
 export interface Participants {
   assists: number;
   baronKills: number;
@@ -138,29 +140,34 @@ interface Team {
 }
 
 export interface MatchInfo {
-  info: {
-    gameCreation: number;
-    gameDuration: number;
-    gameId: number;
-    gameMode: string;
-    gameName: string;
-    gameStartTimestamp: number;
-    gameType: string;
-    gameVersion: string;
-    mapId: number;
-    participants: Participants[];
-    platformId: string;
-    queueId: number;
-    teams: Team[];
-  };
-  metadata: {
-    dataVersion: string;
-    matchId: string;
-    participants: string[];
-  };
+  gameCreation: number;
+  gameDuration: number;
+  gameId: number;
+  gameMode: string;
+  gameName: string;
+  gameStartTimestamp: number;
+  gameType: string;
+  gameVersion: string;
+  mapId: number;
+  participants: Participants[];
+  platformId: string;
+  queueId: number;
+  teams: Team[];
+}
+
+export interface MatchMetaData {
+  dataVersion: string;
+  matchId: string;
+  participants: string[];
+}
+
+export interface MatchResponse {
+  info: MatchInfo;
+  metadata:MatchMetaData;
 }
 
 export interface MatchScoreInfo {
+  name: string;
   kills: number;
   deaths: number;
   assists: number;
@@ -169,3 +176,11 @@ export interface MatchScoreInfo {
 }
 
 export type MatchIdList = string[];
+
+export interface MatchIdListReponse extends ApiResponse {
+  data: string[]
+}
+
+export interface MatchListResponse extends ApiResponse {
+  data: MatchResponse;
+}
