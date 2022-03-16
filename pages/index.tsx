@@ -4,11 +4,11 @@ import Head from 'next/head'
 
 import RegisterSummoner from '@components/register';
 import styles from '@styles/Home.module.css';
-import { useSummonerList } from '@hooks/summoner';
+import useSummonerNameList from '@hooks/summoner/useSummonerNameList';
 import Table from '@components/table';
 
 const Home: NextPage = () => {
-  const {summonerList} = useSummonerList();
+  const {summonerList} = useSummonerNameList();
 
   return (
     <div className={styles.container}>

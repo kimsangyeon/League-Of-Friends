@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import {RANK_TO_MAP} from '@consts/index';
-import {useRank} from "@hooks/summoner";
+import useRank from "@hooks/rank/useRank";
 import styles from '@styles/common.module.css'
+import TableLoading from './TableLoading';
 
 interface RankProps {
   id: string;
@@ -11,9 +12,9 @@ const UNRANKED = 'UNRANKED';
 const RANK_LIST = ['RANKED_SOLO_5x5', 'RANKED_FLEX_SR'];
 
 const Rank = ({id}: RankProps) => {
-  const { rank, isRankLoading, isRankFetching } = useRank(id);
+  const rank = useRank(id);
 
-  if (isRankLoading || isRankFetching) return <div>Loading</div>;
+  if (!rank) return <TableLoading />;
 
   return (
     <>

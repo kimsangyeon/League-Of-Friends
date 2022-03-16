@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './table.module.css';
-import {useSummoner} from '@hooks/summoner';
+import useSummoner from '@hooks/summoner/useSummoner';
 import TableData from './TableData';
+import TableLoading from './TableLoading';
 
 interface TalbeRowProps {
   name: string;
@@ -9,9 +10,9 @@ interface TalbeRowProps {
 }
 
 const TableRow = ({name, index}: TalbeRowProps) => {
-  const {summoner, isSummonerLoading, isSummonerFetching} = useSummoner(name);
+  const [summoner] = useSummoner(name);
 
-  if (isSummonerLoading || isSummonerFetching) <div>Loading</div>;
+  if (!summoner) <TableLoading />;
 
   return (
     <>

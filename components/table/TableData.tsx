@@ -6,6 +6,7 @@ import {MatchScoreInfo} from '@models/match';
 import {LeadInfo} from '@models/lead';
 import Rank from './Rank';
 import ProfileIcon from './ProfileIcon';
+import TableLoading from './TableLoading';
 
 interface TalbeDataProps {
   puuid: string;
@@ -27,13 +28,14 @@ const TableData = ({puuid, profileIconId, id, name, index}: TalbeDataProps) => {
 
     const {kills, deaths, assists, win} = match?.info?.participants[index];
     return {
+      name,
       kills: info.kills + kills,
       deaths: info.deaths + deaths,
       assists: info.assists + assists,
       win: win ? ++info.win : info.win,
       lose: win ? info.lose : ++info.lose,
     };
-  }, {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0}), [matchList, puuid]);
+  }, {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0, name}), [matchList, puuid]);
 
   useEffect(() => {
     const leadInfo: LeadInfo[] = queryClient.getQueryData('leadInfo') || [];
@@ -50,7 +52,7 @@ const TableData = ({puuid, profileIconId, id, name, index}: TalbeDataProps) => {
   if (
     isMatchIdListLoading || isMatchIdListFetching ||
     isMatchListLoading || isMatchListFetching
-  ) return <div>Loading</div>
+  ) return <TableLoading />;
 
   return (
     <>
