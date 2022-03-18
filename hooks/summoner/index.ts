@@ -1,12 +1,17 @@
-import { apiGet } from '@utils/apiUtils';
-import { GET_SUMMONER_BY_NAME_URL, API_SUMMONER_PREFIX_FOR_SERVER } from '@consts/index';
-import { SummonerInfo } from '@models/summoner';
+import {apiGet} from '@utils/apiUtils';
+import {
+  GET_SUMMONER_BY_NAME_URL,
+  API_SUMMONER_PREFIX_FOR_SERVER,
+} from '@consts/index';
+import {SummonerInfo} from '@models/summoner';
 
 export const fetchSummoner = async (summonerName = '', isServer = false) => {
   if (!summonerName) return null;
 
   return await apiGet<SummonerInfo>(
-    `${isServer ? API_SUMMONER_PREFIX_FOR_SERVER : ''}${GET_SUMMONER_BY_NAME_URL}/${summonerName}`
+    `${
+      isServer ? API_SUMMONER_PREFIX_FOR_SERVER : ''
+    }${GET_SUMMONER_BY_NAME_URL}/${summonerName}`
   );
 };
 

@@ -6,11 +6,12 @@ export const GET_SUMMONER_RANK_BY_ID_URL = '/lol/league/v4/entries/by-summoner';
 export const GET_MATCH_ID_LIST_BY_PUUID = '/lol/match/v5/matches/by-puuid';
 export const GET_MATCH_BY_MATCHID = '/lol/match/v5/matches';
 
-export const PROFILE_ICON_URL = 'http://ddragon.leagueoflegends.com/cdn/12.4.1/img/profileicon';
+export const PROFILE_ICON_URL =
+  'http://ddragon.leagueoflegends.com/cdn/12.4.1/img/profileicon';
 
-export const RIOT_KEY = 'RGAPI-e1c585b3-835a-4ad6-baab-55abf39b583b';
+export const RIOT_KEY = 'RGAPI-e0608d26-67b3-4cab-9ef8-db1deb31f209';
 
 export const RANK_TO_MAP: {[key: string]: string} = {
-  'RANKED_SOLO_5x5': '솔로랭크',
-  'RANKED_FLEX_SR': '자유 5:5 랭크'
+  RANKED_SOLO_5x5: '솔로랭크',
+  RANKED_FLEX_SR: '자유 5:5 랭크',
 };

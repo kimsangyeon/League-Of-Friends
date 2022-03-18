@@ -1,5 +1,5 @@
 import React from 'react';
-import { Participants } from '@models/match';
+import {Participants} from '@models/match';
 import Detail from './Detail';
 import styles from '@styles/common.module.css';
 

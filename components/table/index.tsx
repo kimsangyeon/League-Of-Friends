@@ -11,21 +11,23 @@ interface TableProps {
 
 const Table = ({list}: TableProps) => {
   const summonerList = useSummonerList(list);
-  const matchList = useMatchList(summonerList?.map(summoner => summoner.puuid) || []);
+  const matchList = useMatchList(
+    summonerList?.map((summoner) => summoner.puuid) || []
+  );
   const infoList = useMatchScoreInfoList(matchList, summonerList);
 
   return (
     <div>
       <table className={styles.table}>
         <colgroup>
-          <col style={{width: '15%'}}/>
+          <col style={{width: '15%'}} />
           <col />
-          <col style={{width: '10%'}}/>
-          <col style={{width: '10%'}}/>
-          <col style={{width: '10%'}}/>
-          <col style={{width: '10%'}}/>
-          <col style={{width: '10%'}}/>
-          <col style={{width: '10%'}}/>
+          <col style={{width: '10%'}} />
+          <col style={{width: '10%'}} />
+          <col style={{width: '10%'}} />
+          <col style={{width: '10%'}} />
+          <col style={{width: '10%'}} />
+          <col style={{width: '10%'}} />
         </colgroup>
         <thead>
           <tr className={styles.theadRow}>
@@ -40,13 +42,14 @@ const Table = ({list}: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {infoList.length !== 0 && infoList.map((info, index) => (
-            <TableRow name={info?.name} key={info?.name} index={index + 1} />
-          ))}
+          {infoList.length !== 0 &&
+            infoList.map((info, index) => (
+              <TableRow name={info?.name} key={info?.name} index={index + 1} />
+            ))}
         </tbody>
       </table>
     </div>
-  )
+  );
 };
 
 export default Table;

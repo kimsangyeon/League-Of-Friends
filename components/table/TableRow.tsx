@@ -18,11 +18,17 @@ const TableRow = ({name, index}: TalbeRowProps) => {
     <>
       {summoner && (
         <tr className={styles.tbodyRow}>
-          <TableData puuid={summoner.puuid} id={summoner.id} profileIconId={summoner.profileIconId} name={summoner.name} index={index} />
+          <TableData
+            puuid={summoner.puuid}
+            id={summoner.id}
+            profileIconId={summoner.profileIconId}
+            name={summoner.name}
+            index={index}
+          />
         </tr>
       )}
     </>
-  )
+  );
 };
 
 export default TableRow;

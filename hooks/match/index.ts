@@ -1,63 +1,100 @@
-import { useQuery } from 'react-query';
-import { apiGet } from '@utils/apiUtils';
-import { GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID, API_MATCH_PREFIX_FOR_SERVER } from '@consts/index';
-import { MatchIdList, MatchResponse } from '@models/match';
+import {useQuery} from 'react-query';
+import {apiGet} from '@utils/apiUtils';
+import {
+  GET_MATCH_ID_LIST_BY_PUUID,
+  GET_MATCH_BY_MATCHID,
+  API_MATCH_PREFIX_FOR_SERVER,
+} from '@consts/index';
+import {MatchIdList, MatchResponse} from '@models/match';
 
 const delay = (time = 5000) => {
-  return new Promise((r) => setTimeout(r, time))
+  return new Promise((r) => setTimeout(r, time));
 };
 
 export const fetchMatchIdList = async (puuid = '', isServer = false) => {
   if (!puuid) return null;
 
-  return await apiGet<MatchIdList>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=5`);
+  return await apiGet<MatchIdList>(
+    `${
+      isServer ? API_MATCH_PREFIX_FOR_SERVER : ''
+    }${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=3`
+  );
 };
 
-export const useMatchIdList = (puuid = ''): { matchIdList: string[] | undefined, isMatchIdListLoading: boolean, isMatchIdListFetching: boolean } => {
+export const useMatchIdList = (
+  puuid = ''
+): {
+  matchIdList: string[] | undefined;
+  isMatchIdListLoading: boolean;
+  isMatchIdListFetching: boolean;
+} => {
   const {
     data: matchIdListData,
     isLoading: isMatchIdListLoading,
     isFetching: isMatchIdListFetching,
-  } = useQuery(['matchIdList', puuid], () => {
-    delay();
-    return fetchMatchIdList(puuid)
-  }, {
-    retry: 5,
-    retryDelay: 5000,
-  });
+  } = useQuery(
+    ['matchIdList', puuid],
+    () => {
+      delay();
+      return fetchMatchIdList(puuid);
+    },
+    {
+      retry: 5,
+      retryDelay: 5000,
+    }
+  );
 
   return {
     matchIdList: matchIdListData?.data,
     isMatchIdListLoading,
-    isMatchIdListFetching
+    isMatchIdListFetching,
   };
 };
 
-export const fetchMatchList = async (matchIdList: string[] = [], isServer = false) => {
+export const fetchMatchList = async (
+  matchIdList: string[] = [],
+  isServer = false
+) => {
   if (matchIdList.length === 0) return [];
 
-  const matchList = matchIdList.map(matchId => (
-    apiGet<MatchResponse[]>(`${isServer ? API_MATCH_PREFIX_FOR_SERVER : ''}${GET_MATCH_BY_MATCHID}/${matchId}`)
-  ));
+  const matchList = matchIdList.map((matchId) =>
+    apiGet<MatchResponse[]>(
+      `${
+        isServer ? API_MATCH_PREFIX_FOR_SERVER : ''
+      }${GET_MATCH_BY_MATCHID}/${matchId}`
+    )
+  );
   return await Promise.allSettled(matchList);
 };
 
-export const useMatchList = (matchIdList: string[] = []): { matchList: MatchResponse[], isMatchListLoading: boolean, isMatchListFetching: boolean } => {
+export const useMatchList = (
+  matchIdList: string[] = []
+): {
+  matchList: MatchResponse[];
+  isMatchListLoading: boolean;
+  isMatchListFetching: boolean;
+} => {
   const {
     data: matchList,
     isLoading: isMatchListLoading,
-    isFetching: isMatchListFetching
-  } = useQuery(['matchList', matchIdList], () => {
-    delay();
-    return fetchMatchList(matchIdList)
-  }, {
-    retry: 5,
-    retryDelay: 5000,
-  });
+    isFetching: isMatchListFetching,
+  } = useQuery(
+    ['matchList', matchIdList],
+    () => {
+      delay();
+      return fetchMatchList(matchIdList);
+    },
+    {
+      retry: 5,
+      retryDelay: 5000,
+    }
+  );
 
   return {
-    matchList: matchList ? (matchList as any[]).map(match => match?.value?.data) : [],
+    matchList: matchList
+      ? (matchList as any[]).map((match) => match?.value?.data)
+      : [],
     isMatchListLoading,
-    isMatchListFetching
+    isMatchListFetching,
   };
 };
