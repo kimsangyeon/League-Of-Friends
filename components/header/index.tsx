@@ -7,8 +7,8 @@ const Header = () => (
     <nav className={styles.nav}>
       <div>
         <span className={styles.headerTitle}>
-          <Link href="/">
-            <a >Leage-Of-Friends</a>
+          <Link href='/'>
+            <a>Leage-Of-Friends</a>
           </Link>
         </span>
       </div>

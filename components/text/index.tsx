@@ -5,8 +5,6 @@ interface TextProps {
   text: string;
 }
 
-const Text = ({text}: TextProps) => (
-  <div className={styles.text}>{text}</div>
-);
+const Text = ({text}: TextProps) => <div className={styles.text}>{text}</div>;
 
 export default Text;

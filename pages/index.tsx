@@ -1,6 +1,6 @@
 import React from 'react';
-import type { NextPage } from 'next'
-import Head from 'next/head'
+import type {NextPage} from 'next';
+import Head from 'next/head';
 
 import RegisterSummoner from '@components/register';
 import styles from '@styles/Home.module.css';
@@ -14,8 +14,8 @@ const Home: NextPage = () => {
     <div className={styles.container}>
       <Head>
         <title>Create Next App</title>
-        <meta name="description" content="league of legends" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='league of legends' />
+        <link rel='icon' href='/favicon.ico' />
       </Head>
 
       <main className={styles.main}>
@@ -26,4 +26,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home
+export default Home;
