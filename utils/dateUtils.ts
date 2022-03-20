@@ -18,3 +18,13 @@ export const getDaysAgo = (date: Date) => {
     return `${betweenTimeDay}일 전`;
   }
 };
+
+export const formatYYYYMMDD = (time: number) => {
+  const date = new Date(time);
+  const yyyy = `${date.getFullYear()}`.slice(2);
+  const mm =
+    date.getMonth() + 1 < 10 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  const dd = date.getDate();
+
+  return `${yyyy}.${mm}.${dd}`;
+};
