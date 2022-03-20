@@ -17,7 +17,7 @@ export const fetchMatchIdList = async (puuid = '', isServer = false) => {
   return await apiGet<MatchIdList>(
     `${
       isServer ? API_MATCH_PREFIX_FOR_SERVER : ''
-    }${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=3`
+    }${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=5`
   );
 };
 

@@ -7,6 +7,7 @@ import {LeadInfo} from '@models/lead';
 import Rank from './Rank';
 import ProfileIcon from './ProfileIcon';
 import TableLoading from './TableLoading';
+import {formatYYYYMMDD} from '@utils/dateUtils';
 
 interface TalbeDataProps {
   puuid: string;
@@ -33,6 +34,7 @@ const TableData = ({puuid, profileIconId, id, name}: TalbeDataProps) => {
 
           if (index === undefined) return info;
 
+          const {gameEndTimestamp} = match?.info;
           const {kills, deaths, assists, win} =
             match?.info?.participants[index];
           return {
@@ -42,9 +44,10 @@ const TableData = ({puuid, profileIconId, id, name}: TalbeDataProps) => {
             assists: info.assists + assists,
             win: win ? ++info.win : info.win,
             lose: win ? info.lose : ++info.lose,
+            end: info.end > gameEndTimestamp ? info.end : gameEndTimestamp,
           };
         },
-        {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0, name}
+        {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0, end: 0, name}
       ),
     [matchList, puuid, name]
   );
@@ -86,6 +89,7 @@ const TableData = ({puuid, profileIconId, id, name}: TalbeDataProps) => {
       <td className={styles.td}>{info.assists}</td>
       <td className={styles.td}>{info.win}</td>
       <td className={styles.td}>{info.lose}</td>
+      <td className={styles.td}>{formatYYYYMMDD(info.end)}</td>
     </>
   );
 };

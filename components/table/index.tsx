@@ -39,6 +39,7 @@ const Table = ({list}: TableProps) => {
             <th className={styles.th}>어시스트</th>
             <th className={styles.th}>승리</th>
             <th className={styles.th}>패배</th>
+            <th className={styles.th}>마지막 경기</th>
           </tr>
         </thead>
         <tbody>

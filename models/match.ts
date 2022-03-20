@@ -63,11 +63,14 @@ export interface Participants {
       offense: number;
     };
     selections: {
-      perk: number, var1: number, var2: number, var3: number,
+      perk: number;
+      var1: number;
+      var2: number;
+      var3: number;
     }[];
     styles: {
-      description: string,
-      style: number,
+      description: string;
+      style: number;
     }[];
   };
   physicalDamageDealt: number;
@@ -91,7 +94,7 @@ export interface Participants {
   summonerId: string;
   summonerLevel: number;
   summonerName: string;
-  teamEarlySurrendered: false
+  teamEarlySurrendered: false;
   teamId: number;
   teamPosition: string;
   timeCCingOthers: number;
@@ -125,14 +128,14 @@ export interface Participants {
 interface Team {
   bans: any[];
   objectives: {
-    baron: {first: boolean, kills: number};
-    champion: {first: boolean, kills: number};
-    dragon: {first: boolean, kills: number};
-    inhibitor: {first: boolean, kills: number};
-    riftHerald: {first: boolean, kills: number};
+    baron: {first: boolean; kills: number};
+    champion: {first: boolean; kills: number};
+    dragon: {first: boolean; kills: number};
+    inhibitor: {first: boolean; kills: number};
+    riftHerald: {first: boolean; kills: number};
     tower: {
-      first: boolean,
-      kills: number,
+      first: boolean;
+      kills: number;
     };
   };
   teamId: number;
@@ -145,6 +148,7 @@ export interface MatchInfo {
   gameId: number;
   gameMode: string;
   gameName: string;
+  gameEndTimestamp: number;
   gameStartTimestamp: number;
   gameType: string;
   gameVersion: string;
@@ -163,7 +167,7 @@ export interface MatchMetaData {
 
 export interface MatchResponse {
   info: MatchInfo;
-  metadata:MatchMetaData;
+  metadata: MatchMetaData;
 }
 
 export interface MatchScoreInfo {
@@ -173,12 +177,13 @@ export interface MatchScoreInfo {
   assists: number;
   win: number;
   lose: number;
+  end: number;
 }
 
 export type MatchIdList = string[];
 
 export interface MatchIdListReponse extends ApiResponse {
-  data: string[]
+  data: string[];
 }
 
 export interface MatchListResponse extends ApiResponse {
