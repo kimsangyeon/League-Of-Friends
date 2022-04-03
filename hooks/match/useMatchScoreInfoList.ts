@@ -15,13 +15,21 @@ const useMatchScoreInfoList = (
           )
         );
         if (!summoner)
-          return {name: '', kills: 0, deaths: 0, assists: 0, win: 0, lose: 0};
+          return {
+            name: '',
+            kills: 0,
+            deaths: 0,
+            assists: 0,
+            win: 0,
+            lose: 0,
+            end: 0,
+          };
 
         const {puuid, name} = summoner;
 
         return matchs.reduce(
           (info, match) => {
-            const {participants} = match;
+            const {participants, gameEndTimestamp} = match;
             const participant = participants.find((p) => p.puuid === puuid);
 
             if (!participant) return info;
@@ -35,9 +43,10 @@ const useMatchScoreInfoList = (
               assists: info.assists + assists,
               win: win ? ++info.win : info.win,
               lose: win ? info.lose : ++info.lose,
+              end: info.end > gameEndTimestamp ? info.end : gameEndTimestamp,
             };
           },
-          {name, kills: 0, deaths: 0, assists: 0, win: 0, lose: 0}
+          {name, kills: 0, deaths: 0, assists: 0, win: 0, lose: 0, end: 0}
         );
       }),
     [matchList, summonerList]

@@ -1,6 +1,5 @@
 import React, {useEffect, useMemo} from 'react';
-import {useQueryClient} from 'react-query';
-import {useMatchIdList, useMatchList} from '@hooks/match';
+import useMatchList from '@hooks/match/useMatchList';
 import styles from './table.module.css';
 import {MatchScoreInfo} from '@models/match';
 import {LeadInfo} from '@models/lead';
@@ -10,68 +9,13 @@ import TableLoading from './TableLoading';
 import {formatYYYYMMDD} from '@utils/dateUtils';
 
 interface TalbeDataProps {
-  puuid: string;
+  info: MatchScoreInfo;
   id: string;
   profileIconId: number;
   name: string;
-  index: number;
 }
 
-const TableData = ({puuid, profileIconId, id, name}: TalbeDataProps) => {
-  const queryClient = useQueryClient();
-  const {matchIdList, isMatchIdListLoading, isMatchIdListFetching} =
-    useMatchIdList(puuid);
-  const {matchList, isMatchListLoading, isMatchListFetching} =
-    useMatchList(matchIdList);
-
-  const info: MatchScoreInfo = useMemo(
-    () =>
-      matchList?.reduce(
-        (info, match) => {
-          const index = match?.metadata?.participants?.findIndex(
-            (p: string) => p === puuid
-          );
-
-          if (index === undefined) return info;
-
-          const {gameEndTimestamp} = match?.info;
-          const {kills, deaths, assists, win} =
-            match?.info?.participants[index];
-          return {
-            name,
-            kills: info.kills + kills,
-            deaths: info.deaths + deaths,
-            assists: info.assists + assists,
-            win: win ? ++info.win : info.win,
-            lose: win ? info.lose : ++info.lose,
-            end: info.end > gameEndTimestamp ? info.end : gameEndTimestamp,
-          };
-        },
-        {kills: 0, deaths: 0, assists: 0, win: 0, lose: 0, end: 0, name}
-      ),
-    [matchList, puuid, name]
-  );
-
-  useEffect(() => {
-    const leadInfo: LeadInfo[] = queryClient.getQueryData('leadInfo') || [];
-    const prevInfo = leadInfo.find((info) => info.name === name);
-    if (prevInfo) {
-      prevInfo.info = info;
-    } else {
-      leadInfo.push({name, info});
-    }
-
-    queryClient.setQueryData('leadInfo', leadInfo);
-  }, [info, name, queryClient]);
-
-  if (
-    isMatchIdListLoading ||
-    isMatchIdListFetching ||
-    isMatchListLoading ||
-    isMatchListFetching
-  )
-    return <TableLoading />;
-
+const TableData = ({info, profileIconId, id, name}: TalbeDataProps) => {
   return (
     <>
       <td className={styles.td}>
