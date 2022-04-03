@@ -6,12 +6,13 @@ const useMatchScoreInfoList = (
   matchList: MatchInfo[][] = [],
   summonerList: SummonerInfo[] = []
 ) => {
+  const isCalcedIdList: string[] = [];
   return useMemo(
     () =>
       matchList?.map((matchs) => {
         const summoner = summonerList?.find((summoner) =>
           matchs.every(({participants}) =>
-            participants.some(({puuid}) => summoner.puuid === puuid)
+            participants.some(({puuid}) => summoner.puuid === puuid && !isCalcedIdList.includes(puuid))
           )
         );
         if (!summoner)
@@ -26,7 +27,7 @@ const useMatchScoreInfoList = (
           };
 
         const {puuid, name} = summoner;
-
+        isCalcedIdList.push(puuid);
         return matchs.reduce(
           (info, match) => {
             const {participants, gameEndTimestamp} = match;
