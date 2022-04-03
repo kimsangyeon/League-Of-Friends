@@ -1,39 +1,28 @@
 import useSWRImmutable from 'swr/immutable';
 import {apiGet} from '@utils/apiUtils';
-import {GET_MATCH_ID_LIST_BY_PUUID, GET_MATCH_BY_MATCHID} from '@consts/index';
-import {
-  MatchIdListReponse,
-  MatchResponse,
-  MatchListResponse,
-} from '@models/match';
+import {GET_MATCH_BY_MATCHID, GET_MATCH_ID_LIST_BY_PUUID} from '@consts/index';
+import {MatchResponse} from '@models/match';
+import {AxiosResponse} from 'axios';
 
 const useMatchList = (puuidList: string[]) => {
-  const {data: matchIdList} = useSWRImmutable(
-    ['api/match/id/list', puuidList],
-    async (_, list) => {
-      return await Promise.all(
-        list.map(
-          async (puuid) =>
-            await apiGet<MatchIdListReponse[]>(
-              `${GET_MATCH_ID_LIST_BY_PUUID}/${puuid}/ids?start=0&count=3`
-            )
+  const {data} = useSWRImmutable(
+    [GET_MATCH_ID_LIST_BY_PUUID, puuidList],
+    async (url, idList) => {
+      const matchIdList: AxiosResponse<string[]>[] = await Promise.all(
+        idList.map(
+          async (id) =>
+            await apiGet<string[]>(`${url}/${id}/ids?start=0&count=3`)
         )
       );
-    }
-  );
 
-  const {data} = useSWRImmutable(
-    ['api/match/list', matchIdList?.map((res) => res.data)],
-    async (_, list) => {
-      if (!list) return {data: []};
       return await Promise.all(
-        list.map(
-          async (idList) =>
+        matchIdList.map(
+          async ({data}) =>
             await Promise.all(
-              idList.map(
-                async (matchid: any) =>
-                  await apiGet<MatchListResponse>(
-                    `${GET_MATCH_BY_MATCHID}/${matchid}`
+              data.map(
+                async (matchId: string) =>
+                  await apiGet<MatchResponse>(
+                    `${GET_MATCH_BY_MATCHID}/${matchId}`
                   )
               )
             )
@@ -41,10 +30,8 @@ const useMatchList = (puuidList: string[]) => {
       );
     }
   );
-  if (!Array.isArray(data)) return;
-  return data?.map((list: {data: any}[]) =>
-    list.map(({data}: {data: MatchResponse}) => data?.info)
-  );
+
+  return data?.map((d) => d.map(({data}) => data));
 };
 
 export default useMatchList;

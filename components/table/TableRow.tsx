@@ -3,14 +3,14 @@ import styles from './table.module.css';
 import useSummoner from '@hooks/summoner/useSummoner';
 import TableData from './TableData';
 import TableLoading from './TableLoading';
+import {MatchScoreInfo} from '@models/match';
 
 interface TalbeRowProps {
-  name: string;
-  index: number;
+  info: MatchScoreInfo;
 }
 
-const TableRow = ({name, index}: TalbeRowProps) => {
-  const [summoner] = useSummoner(name);
+const TableRow = ({info}: TalbeRowProps) => {
+  const [summoner] = useSummoner(info?.name);
 
   if (!summoner) <TableLoading />;
 
@@ -19,11 +19,10 @@ const TableRow = ({name, index}: TalbeRowProps) => {
       {summoner && (
         <tr className={styles.tbodyRow}>
           <TableData
-            puuid={summoner.puuid}
+            info={info}
             id={summoner.id}
             profileIconId={summoner.profileIconId}
             name={summoner.name}
-            index={index}
           />
         </tr>
       )}

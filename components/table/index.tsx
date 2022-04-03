@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './table.module.css';
 import TableRow from './TableRow';
+import TableLoading from './TableLoading';
 import useSummonerList from '@hooks/summoner/useSummonerList';
 import useMatchList from '@hooks/match/useMatchList';
 import useMatchScoreInfoList from '@hooks/match/useMatchScoreInfoList';
@@ -14,7 +15,11 @@ const Table = ({list}: TableProps) => {
   const matchList = useMatchList(
     summonerList?.map((summoner) => summoner.puuid) || []
   );
-  const infoList = useMatchScoreInfoList(matchList, summonerList);
+
+  const infoList = useMatchScoreInfoList(
+    matchList?.map((list) => list.map(({info}) => info)),
+    summonerList
+  );
 
   return (
     <div>
@@ -43,10 +48,13 @@ const Table = ({list}: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {infoList.length !== 0 &&
-            infoList.map((info, index) => (
-              <TableRow name={info?.name} key={info?.name} index={index + 1} />
-            ))}
+          {infoList.length !== 0 ? (
+            infoList.map((info) => <TableRow info={info} key={info?.name} />)
+          ) : (
+            <tr>
+              <TableLoading />
+            </tr>
+          )}
         </tbody>
       </table>
     </div>
