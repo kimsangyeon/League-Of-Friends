@@ -51,8 +51,8 @@ const Table = ({list}: TableProps) => {
           {infoList.length !== 0 ? (
             infoList.map((info) => <TableRow info={info} key={info?.name} />)
           ) : (
-            <tr>
-              <TableLoading />
+            <tr className={styles.tbodyRow}>
+              <td className={styles.td}><TableLoading /></td>
             </tr>
           )}
         </tbody>
