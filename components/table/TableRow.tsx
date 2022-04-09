@@ -12,21 +12,19 @@ interface TalbeRowProps {
 const TableRow = ({info}: TalbeRowProps) => {
   const [summoner] = useSummoner(info?.name);
 
-  if (!summoner) <TableLoading />;
+  if (!summoner) <tr className={styles.tbodyRow}><td className={styles.td}><TableLoading /></td></tr>;
 
   return (
-    <>
+    <tr className={styles.tbodyRow}>
       {summoner && (
-        <tr className={styles.tbodyRow}>
-          <TableData
-            info={info}
-            id={summoner.id}
-            profileIconId={summoner.profileIconId}
-            name={summoner.name}
-          />
-        </tr>
+        <TableData
+          info={info}
+          id={summoner.id}
+          profileIconId={summoner.profileIconId}
+          name={summoner.name}
+        />
       )}
-    </>
+    </tr>
   );
 };
 

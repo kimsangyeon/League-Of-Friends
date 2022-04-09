@@ -1,11 +1,8 @@
-import React, {useEffect, useMemo} from 'react';
-import useMatchList from '@hooks/match/useMatchList';
+import React from 'react';
 import styles from './table.module.css';
 import {MatchScoreInfo} from '@models/match';
-import {LeadInfo} from '@models/lead';
 import Rank from './Rank';
 import ProfileIcon from './ProfileIcon';
-import TableLoading from './TableLoading';
 import {formatYYYYMMDD} from '@utils/dateUtils';
 
 interface TalbeDataProps {
