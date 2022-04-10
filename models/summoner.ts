@@ -1,3 +1,4 @@
+import { ApiResponse } from './api';
 
 export interface SummonerInfo {
   accountId: string;
@@ -7,6 +8,10 @@ export interface SummonerInfo {
   puuid: string;
   revisionDate: number;
   summonerLevel: number;
+}
+
+export interface SummonerInfoResponse extends ApiResponse {
+  data: SummonerInfo;
 }
 
 export interface RankInfo {
@@ -22,4 +27,8 @@ export interface RankInfo {
   summonerName: string;
   tier: string;
   veteran: boolean;
+}
+
+export interface RankInfoResponse extends ApiResponse {
+  data: RankInfo;
 }
