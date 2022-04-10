@@ -1,6 +1,5 @@
 import useSWRImmutable from 'swr/immutable';
 import {apiGet} from '@utils/apiUtils';
-import {GET_SUMMONER_BY_NAME_URL} from '@consts/index';
 import {SummonerInfo} from '@models/summoner';
 
 const useSummonerList = (list: string[]) => {
@@ -10,7 +9,7 @@ const useSummonerList = (list: string[]) => {
       return await Promise.all(
         list.map(
           async (name) =>
-            await apiGet<SummonerInfo>(`${GET_SUMMONER_BY_NAME_URL}/${name}`)
+            await apiGet<SummonerInfo>(`/api/summoner/${name}`)
         )
       );
     }
