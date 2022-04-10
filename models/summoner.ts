@@ -11,7 +11,7 @@ export interface SummonerInfo {
 }
 
 export interface SummonerInfoResponse extends ApiResponse {
-  data: SummonerInfo;
+  data: SummonerInfo[];
 }
 
 export interface RankInfo {
