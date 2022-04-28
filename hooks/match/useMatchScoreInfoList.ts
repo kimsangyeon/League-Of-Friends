@@ -2,10 +2,20 @@ import {useMemo} from 'react';
 import {MatchInfo} from '@models/match';
 import {SummonerInfo} from '@models/summoner';
 
+export interface Info {
+  name: string;
+  kills: number;
+  deaths: number;
+  assists: number;
+  win: number;
+  lose: number;
+  end: number;
+};
+
 const useMatchScoreInfoList = (
   matchList: MatchInfo[][] = [],
   summonerList: SummonerInfo[] = []
-) => {
+): Info[] => {
   const isCalcedIdList: string[] = [];
   return useMemo(
     () =>

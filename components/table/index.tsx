@@ -4,11 +4,21 @@ import TableRow from './TableRow';
 import TableLoading from './TableLoading';
 import useSummonerList from '@hooks/summoner/useSummonerList';
 import useMatchList from '@hooks/match/useMatchList';
-import useMatchScoreInfoList from '@hooks/match/useMatchScoreInfoList';
+import useMatchScoreInfoList, {Info} from '@hooks/match/useMatchScoreInfoList';
 
 interface TableProps {
   list: string[];
 }
+
+const sortByKDA = (arr: Info[], type = 'desc') => {
+  return [...arr].sort((a, b) => (
+    type === 'desc' ? (
+      (((b.kills + b.assists) / b.deaths)) - ((a.kills + a.assists) / a.deaths)
+    ) : (
+      (((a.kills + a.assists) / a.deaths)) - ((b.kills + b.assists) / b.deaths)
+    )
+  ))
+};
 
 const Table = ({list}: TableProps) => {
   const summonerList = useSummonerList(list);
@@ -49,7 +59,7 @@ const Table = ({list}: TableProps) => {
         </thead>
         <tbody>
           {infoList.length !== 0 ? (
-            infoList.map((info) => <TableRow info={info} key={info?.name} />)
+            sortByKDA(infoList).map((info) => <TableRow info={info} key={info?.name} />)
           ) : (
             <tr className={styles.tbodyRow}>
               <td className={styles.td}><TableLoading /></td>
