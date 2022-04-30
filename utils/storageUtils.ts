@@ -5,7 +5,7 @@ export const getLocalStorageByNameList = (): string[] => {
 export const setLocalStorageByNameList = (name: string) => {
   const nameList = localStorage.getItem('nameList')?.split(',') || [];
 
-  if (nameList.length === 5) {
+  if (nameList.length === 10) {
     alert('소환사는 5명까지 등록 가능합니다.');
     return;
   }

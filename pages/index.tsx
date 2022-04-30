@@ -20,7 +20,9 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <RegisterSummoner />
-        {summonerList && <Table list={summonerList} />}
+        {summonerList && summonerList?.length > 0 && (
+          <Table list={summonerList} />
+        )}
       </main>
     </div>
   );

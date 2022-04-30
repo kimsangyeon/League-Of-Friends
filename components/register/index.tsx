@@ -1,5 +1,4 @@
 import {MouseEvent, useState} from 'react';
-import {useQueryClient} from 'react-query';
 import styles from './register.module.css';
 import {checkExistSummoner} from '@hooks/summoner';
 import {
@@ -8,20 +7,19 @@ import {
 } from '@utils/storageUtils';
 import Search from '@components/input/search';
 import Button from '@components/button';
+import useSummonerNameList from '@hooks/summoner/useSummonerNameList';
 
 const RegisterSummoner = () => {
-  const queryClient = useQueryClient();
   const [summonerName, setSummonerName] = useState('');
+  const {setSummonerList} = useSummonerNameList();
 
   const onRegister = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (await checkExistSummoner(summonerName)) {
       setLocalStorageByNameList(summonerName);
+      setSummonerList(getLocalStorageByNameList());
       setSummonerName('');
-      queryClient.setQueryData('summonerList', () =>
-        getLocalStorageByNameList()
-      );
     }
   };
 
