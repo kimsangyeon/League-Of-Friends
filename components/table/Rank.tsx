@@ -12,9 +12,9 @@ const UNRANKED = 'UNRANKED';
 const RANK_LIST = ['RANKED_SOLO_5x5', 'RANKED_FLEX_SR'];
 
 const Rank = ({id}: RankProps) => {
-  const rank = useRank(id);
+  const {rank, isValidating} = useRank(id);
 
-  if (!rank) return <TableLoading />;
+  if (!rank || isValidating) return <TableLoading />;
 
   return (
     <>

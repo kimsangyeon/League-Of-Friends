@@ -1,12 +1,18 @@
 import useSWRImmutable from 'swr/immutable';
-import {apiGet} from '@utils/apiUtils';
+import {apiGet, laggy} from '@utils/apiUtils';
+import { AxiosResponse } from 'axios';
+import { SummonerInfo } from '@models/summoner';
 
 const useSummoner = (name: string) => {
-  const {data, error} = useSWRImmutable(
+  const {data, isValidating} = useSWRImmutable<AxiosResponse<SummonerInfo>>(
     `/api/league/${name}`,
-    apiGet
+    apiGet,
+    {use: [laggy]},
   );
-  return [data?.data, error];
+  return {
+    summoner: data?.data,
+    isValidating,
+  };
 };
 
 export default useSummoner;

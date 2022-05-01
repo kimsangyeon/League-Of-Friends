@@ -1,9 +1,9 @@
 import useSWRImmutable from 'swr/immutable';
-import {apiGet} from '@utils/apiUtils';
+import {apiGet, laggy} from '@utils/apiUtils';
 import {SummonerInfo} from '@models/summoner';
 
 const useSummonerList = (list: string[]) => {
-  const {data} = useSWRImmutable(
+  const {data, isValidating} = useSWRImmutable(
     [`api/summoner/list`, list],
     async (_, list) => {
       return await Promise.all(
@@ -12,9 +12,13 @@ const useSummonerList = (list: string[]) => {
             await apiGet<SummonerInfo>(`/api/summoner/${name}`)
         )
       );
-    }
+    },
+    {use: [laggy]},
   );
-  return data?.map(({data}) => data);
+  return {
+    summonerList: data?.map(({data}) => data),
+    isValidating,
+  };
 };
 
 export default useSummonerList;

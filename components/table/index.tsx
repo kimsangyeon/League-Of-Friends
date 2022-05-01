@@ -21,14 +21,14 @@ const sortByKDA = (arr: Info[], type = 'desc') => {
 };
 
 const Table = ({list}: TableProps) => {
-  const summonerList = useSummonerList(list);
-  const matchList = useMatchList(
+  const {summonerList, isValidating: isSummonerListLoading} = useSummonerList(list);
+  const {matchList, isValidating: isMatchListLoading} = useMatchList(
     summonerList?.map((summoner) => summoner.puuid) || []
   );
 
   const infoList = useMatchScoreInfoList(
     matchList?.map((list) => list.map(({info}) => info)),
-    summonerList
+    summonerList,
   );
 
   return (
@@ -58,12 +58,13 @@ const Table = ({list}: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {infoList.length !== 0 ? (
-            sortByKDA(infoList).map((info) => <TableRow info={info} key={info?.name} />)
-          ) : (
+          {isMatchListLoading || isSummonerListLoading && (
             <tr className={styles.tbodyRow}>
               <td className={styles.td}><TableLoading /></td>
             </tr>
+          )}
+          {infoList.length !== 0 && (
+            sortByKDA(infoList).map((info) => <TableRow info={info} key={info?.name} />)
           )}
         </tbody>
       </table>

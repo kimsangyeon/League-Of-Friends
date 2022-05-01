@@ -1,13 +1,17 @@
 import useSWRImmutable from 'swr/immutable';
-import {apiGet} from '@utils/apiUtils';
+import {apiGet, laggy} from '@utils/apiUtils';
 import {RankInfo} from '@models/summoner';
 
 const useRank = (summonerId: string) => {
-  const {data} = useSWRImmutable(
+  const {data, isValidating} = useSWRImmutable(
     `/api/rank/${summonerId}`,
-    apiGet
+    apiGet,
+    {use: [laggy]},
   );
-  return data?.data as RankInfo[];
+  return {
+    rank: data?.data as RankInfo[],
+    isValidating,
+  };
 };
 
 export default useRank;
