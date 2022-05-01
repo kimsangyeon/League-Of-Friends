@@ -7,6 +7,10 @@
   margin: 0 auto;
 }
 
+.tableWrap {
+  padding: 25px;
+}
+
 .theadRow {
   height: 60px;
   background: #36304a;
@@ -35,13 +39,18 @@
 }
 
 .rowLoading {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 50px;
-  height: 50px;
+  border: 13px solid #f3f3f3;
+  border-radius: 100%;
+  border-top: 13px solid #3498db;
+  width: 40px;
+  height: 40px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
   animation: spin 2s linear infinite;
+  margin: 10px;
+}
+
+.tableLoadingWrap {
+  position: absolute;
 }
 
 /* Safari */

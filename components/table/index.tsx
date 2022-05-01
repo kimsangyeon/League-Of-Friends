@@ -32,7 +32,12 @@ const Table = ({list}: TableProps) => {
   );
 
   return (
-    <div>
+    <div className={styles.tableWrap}>
+      {(isMatchListLoading || isSummonerListLoading) && (
+        <div className={styles.tableLoadingWrap}>
+          <TableLoading />
+        </div>
+      )}
       <table className={styles.table}>
         <colgroup>
           <col style={{width: '15%'}} />
@@ -58,11 +63,6 @@ const Table = ({list}: TableProps) => {
           </tr>
         </thead>
         <tbody>
-          {isMatchListLoading || isSummonerListLoading && (
-            <tr className={styles.tbodyRow}>
-              <td className={styles.td}><TableLoading /></td>
-            </tr>
-          )}
           {infoList.length !== 0 && (
             sortByKDA(infoList).map((info) => <TableRow info={info} key={info?.name} />)
           )}

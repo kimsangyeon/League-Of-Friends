@@ -12,7 +12,7 @@ interface TalbeRowProps {
 const TableRow = ({info}: TalbeRowProps) => {
   const {summoner, isValidating} = useSummoner(info?.name);
 
-  if (!summoner || isValidating) <tr className={styles.tbodyRow}><td className={styles.td}><TableLoading /></td></tr>;
+  if (!summoner || isValidating) return <tr className={styles.tbodyRow}><td className={styles.td}><TableLoading /></td></tr>;
 
   return (
     <tr className={styles.tbodyRow}>
