@@ -1,20 +1,25 @@
 import useSWRImmutable from 'swr/immutable';
-import {apiGet} from '@utils/apiUtils';
+import {apiGet, laggy} from '@utils/apiUtils';
 import {MatchResponse} from '@models/match';
+import { AxiosResponse } from 'axios';
 
 const useMatchList = (puuidList: string[]) => {
-  const {data} = useSWRImmutable(
+  const {data, isValidating} = useSWRImmutable<AxiosResponse<MatchResponse[]>[]>(
     [puuidList],
     async (idList) => {
       return await Promise.all(
         idList.map(
-          async (id) =>
-            await apiGet<MatchResponse[]>(`/api/match/list/${id}`)
+          async (id: string) =>
+            await apiGet(`/api/match/list/${id}`)
         )
       );
-    }
-  );
-  return data?.map(({data}) => data);
+    },
+    {use: [laggy]},
+   );
+  return {
+    matchList: data?.map(({data}) => data),
+    isValidating,
+  };
 };
 
 export default useMatchList;
