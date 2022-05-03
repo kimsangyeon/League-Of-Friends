@@ -18,3 +18,8 @@ export const setLocalStorageByNameList = (name: string) => {
   nameList.push(name);
   localStorage.setItem('nameList', nameList.toString());
 };
+
+export const removeLocalStorageByNameList = (name: string) => {
+  const nameList = localStorage.getItem('nameList')?.split(',') || [];
+  localStorage.setItem('nameList', nameList.filter(n => n !== name).toString());
+};
