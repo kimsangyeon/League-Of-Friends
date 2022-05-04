@@ -48,6 +48,7 @@ const Table = ({list}: TableProps) => {
           <col style={{width: '10%'}} />
           <col style={{width: '10%'}} />
           <col style={{width: '10%'}} />
+          <col />
         </colgroup>
         <thead>
           <tr className={styles.theadRow}>
@@ -60,11 +61,12 @@ const Table = ({list}: TableProps) => {
             <th className={styles.th}>승리</th>
             <th className={styles.th}>패배</th>
             <th className={styles.th}>마지막 경기</th>
+            <th className={styles.th}></th>
           </tr>
         </thead>
         <tbody>
           {infoList.length !== 0 && (
-            sortByKDA(infoList).map((info) => <TableRow info={info} key={info?.name} />)
+            sortByKDA(infoList).map((info) => info?.name && <TableRow info={info} key={info?.name} />)
           )}
         </tbody>
       </table>
