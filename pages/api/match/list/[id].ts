@@ -6,7 +6,7 @@ import {MatchIdList, MatchResponse} from '@models/match';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const {id} = req.query;
   try {
-    const matchIdList = await apiGet<MatchIdList>(`${process.env.RIOT_ASIA_API}${GET_MATCH_ID_LIST_BY_PUUID}/${encodeURI(id as string)}/ids?start=0&count=5`, {headers: {'X-Riot-Token': process.env.NEXT_PUBLIC_RIOT_KEY}});
+    const matchIdList = await apiGet<MatchIdList>(`${process.env.RIOT_ASIA_API}${GET_MATCH_ID_LIST_BY_PUUID}/${encodeURI(id as string)}/ids?start=0&count=5`, {headers: {'X-Riot-Token': process.env.RIOT_KEY}});
     const matchList = matchIdList?.data.map(
       async (matchId: string) => await apiGet<MatchResponse>(`${process.env.RIOT_ASIA_API}${GET_MATCH_BY_MATCHID}/${matchId}`)
     );
