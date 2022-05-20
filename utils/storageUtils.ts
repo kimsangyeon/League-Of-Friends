@@ -20,6 +20,7 @@ export const setLocalStorageByNameList = (name: string) => {
 };
 
 export const removeLocalStorageByNameList = (name: string) => {
-  const nameList = localStorage.getItem('nameList')?.split(',') || [];
-  localStorage.setItem('nameList', nameList.filter(n => n !== name).toString());
+  const nameList = localStorage.getItem('nameList')?.split(',').filter(n => n !== name) || [];
+  if (nameList.length === 0) localStorage.removeItem('nameList');
+  else localStorage.setItem('nameList', nameList.toString());
 };
