@@ -6,7 +6,7 @@ import {
   setLocalStorageByNameList,
 } from '@utils/storageUtils';
 import Search from '@components/input/search';
-import Button from '@components/button';
+import {RegisterButton} from '@components/button';
 import useSummonerNameList from '@hooks/summoner/useSummonerNameList';
 
 const RegisterSummoner = () => {
@@ -27,7 +27,7 @@ const RegisterSummoner = () => {
     <div className={styles.registerContainer}>
       <div className={styles.registerWrap}>
         <Search name={summonerName} setName={setSummonerName} />
-        <Button onClick={onRegister} />
+        <RegisterButton onClick={onRegister} />
       </div>
     </div>
   );
