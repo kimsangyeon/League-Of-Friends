@@ -1,3 +1,5 @@
+const {parsed: env} = require('dotenv').config({path: `./.env`});
+
 /** @type {import('next').NextConfig} */
 module.exports = {
   reactStrictMode: true,
@@ -21,5 +23,9 @@ module.exports = {
         destination: 'https://asia.api.riotgames.com/lol/match/:slug*',
       },
     ]
+  },
+
+  env: {
+    ...env,
   },
 }
